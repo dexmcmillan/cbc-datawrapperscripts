@@ -1,7 +1,7 @@
 name: Update Datawrapper chart
 on:
   schedule:
-    - cron: "52 14 * * *"
+    - cron: "0/5 * * * *"
 
 jobs:
   pull_data:
