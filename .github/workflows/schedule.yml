@@ -1,7 +1,7 @@
 name: Update Datawrapper chart
 on:
   schedule:
-    - cron: "52 14 * * *"
+    - cron: "0 6 * * *"
 
 jobs:
   pull_data:
@@ -21,5 +21,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Update chart
-        run: python3 main.py
+      - name: Ontario chart update and publish
+        run: python3 ontario.py
+
+      - name: Alberta chart update and publish
+        run: python3 alberta.py
