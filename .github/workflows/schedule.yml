@@ -21,8 +21,5 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Ontario chart update and publish
-        run: python3 ontario.py
-
-      - name: Alberta chart update and publish
-        run: python3 alberta.py
+      - name: Chart update and publish
+        run: python3 covid.py
