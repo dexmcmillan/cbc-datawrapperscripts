@@ -8,6 +8,7 @@ CHART_IDS = [
             "PIVxK", # New Brunswick
             "34VzE", # BC
             "9H3Bn", # Canada
+            "pmp9T", # Saskatchewan
              ]
 
 AUTH_TOKEN = "f8uy8xNbIvpvFnMdTrcMnHuAPCuhF1epwSxEvEpfTrj0ngPEqLTM6DeZMCYaCsjF"
@@ -15,11 +16,10 @@ AUTH_TOKEN = "f8uy8xNbIvpvFnMdTrcMnHuAPCuhF1epwSxEvEpfTrj0ngPEqLTM6DeZMCYaCsjF"
 ## Prepare data.
 raw = pd.read_csv('https://health-infobase.canada.ca/src/data/covidLive/covid19-download.csv')
 
-all = (raw
-            .pivot(columns="prname", index="date", values="numtoday")
-            .rolling(7).mean()
-            .dropna()
-            )
+all = raw.pivot(columns="prname", index="date", values="numtoday")
+all["atlantic"] = all["Newfoundland and Labrador"] + all["New Brunswick"] + all["Nova Scotia"] + all["Prince Edward Island"]
+
+all = all.rolling(7).mean().dropna()
 
 print(all)
 
