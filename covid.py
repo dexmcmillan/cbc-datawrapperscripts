@@ -7,6 +7,7 @@ CHART_IDS = [
             "3rONz", # Manitoba
             "PIVxK", # New Brunswick
             "34VzE", # BC
+            "9H3Bn", # Canada
              ]
 
 AUTH_TOKEN = "f8uy8xNbIvpvFnMdTrcMnHuAPCuhF1epwSxEvEpfTrj0ngPEqLTM6DeZMCYaCsjF"
