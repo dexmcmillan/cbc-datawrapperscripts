@@ -1,10 +1,8 @@
 import pandas as pd
 import requests
 import json
+from datetime import datetime
 from ast import literal_eval
-
-from shapes import ukraine
-from crimea import crimea
 
 ## The ID of the Ukraine map Datawrapper.
 CHART_ID = "sM21M"
@@ -32,12 +30,17 @@ data["visible"] = (data["visible"]
 data["anchor"] = data["anchor"].str.lower()
 
 data["tooltip"] = '{"text": "<b>' + data["title"] + '</b><br>' + data["tooltip"].str.strip().str.replace("\"", "'") + ' <i>(Source: ' + data["source"].fillna("").str.strip().str.replace("\"", "'") + ')</i>"}'
+
 data["tooltip"] = data["tooltip"].astype(str).apply(lambda x: json.loads(x.strip(), strict=False))
 
 data["markerColor"] = "#c42127"
+
 data["coordinates"] = data["coordinates"].apply(literal_eval)
+
 data["type"] = "point"
+
 data["id"] = range(0,len(data))
+
 data["icon"] = "{'id': '" + data["icon"] + "','path': 'M1000 350a500 500 0 0 0-500-500 500 500 0 0 0-500 500 500 500 0 0 0 500 500 500 500 0 0 0 500-500z','horiz-adv-x': 1000,'scale': 0.42,'height': 700,'width': 1000}"
 data["icon"] = data["icon"].apply(literal_eval)
 data["scale"] = 1.3
@@ -70,20 +73,19 @@ headers = {
 ## Update chart.
 response = requests.request("PUT", f"https://api.datawrapper.de/v3/charts/{CHART_ID}/data", headers=headers, data=json.dumps(payload))
 
-print(response)
-
 headers = {
     "Accept": "*/*",
     "Content-Type": "application/json",
     "Authorization": "Bearer f8uy8xNbIvpvFnMdTrcMnHuAPCuhF1epwSxEvEpfTrj0ngPEqLTM6DeZMCYaCsjF",
 }
 
-day = pd.datetime.today().strftime('%B %d, %Y')
-time = pd.datetime.today().strftime('%H:%M') + " " + ".".join(list(pd.datetime.today().strftime('%p'))).lower() + "."
+today = datetime.today()
+day = today.strftime('%B %d, %Y')
+time = today.strftime('%I:%M') + " " + ".".join(list(today.strftime('%p'))).lower() + "."
 
 metadata_update = {"metadata": {
     "annotate": {
-        "notes": f"Lasted updated on {day} at {time} EST.".replace(" 0", " ")
+        "notes": f"Last updated on {day} at {time} EST.".replace(" 0", " ")
     }
 }
 }
