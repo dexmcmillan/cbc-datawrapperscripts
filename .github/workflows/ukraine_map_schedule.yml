@@ -1,7 +1,6 @@
 name: Update Ukraine battle map
 on:
   schedule:
-    - cron: "0 12-17 * * *"
     - cron: "0/10 * * * *"
 
 jobs:

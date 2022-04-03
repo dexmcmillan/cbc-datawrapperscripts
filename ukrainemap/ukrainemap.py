@@ -29,7 +29,8 @@ data["visible"] = (data["visible"]
 
 data["anchor"] = data["anchor"].str.lower()
 
-data["tooltip"] = '{"text": "<b>' + data["title"] + '</b><br>' + data["tooltip"].str.strip().str.replace("\"", "'") + ' <i>(Source: ' + data["source"].fillna("").str.strip().str.replace("\"", "'") + ')</i>"}'
+data["tooltip"] = data["tooltip"].str.strip().str.replace("\"", '\\"')
+data["tooltip"] = '{"text": "<b>' + data["title"] + '</b><br>' + data["tooltip"] + ' <i>(Source: ' + data["source"].fillna("").str.strip().str.replace("\"", "'") + ')</i>"}'
 
 data["tooltip"] = data["tooltip"].astype(str).apply(lambda x: json.loads(x.strip(), strict=False))
 
