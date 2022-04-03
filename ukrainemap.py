@@ -54,7 +54,7 @@ data_json = (data
 payload = json.loads(data_json)
 
 ## Append the shapes for Crimea, Ukraine etc to our data.
-with open("ukrainemap\shapes.json", 'r') as jsonFile:
+with open("shapes.json", 'r') as jsonFile:
     jsonObject = json.load(jsonFile)
     for shape in jsonObject:
         payload.append(shape)
