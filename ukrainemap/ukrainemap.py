@@ -3,7 +3,13 @@ import requests
 import json
 import datetime as dt
 import os
-from config import DW_AUTH_TOKEN
+from time import sleep
+
+try:
+    from config import DW_AUTH_TOKEN
+except ModuleNotFoundError:
+    # Error handling
+    pass
 
 ## The ID of the Ukraine map Datawrapper.
 CHART_ID = "sM21M"
@@ -89,7 +95,7 @@ headers = {
 }
 
 today = dt.datetime.today()
-day = (today - dt.timedelta(4)).strftime('%B %d, %Y')
+day = (today - dt.timedelta(hours=4)).strftime('%B %d, %Y')
 time = today.strftime('%I:%M') + " " + ".".join(list(today.strftime('%p'))).lower() + "."
 
 metadata_update = {"metadata": {
@@ -101,6 +107,6 @@ metadata_update = {"metadata": {
 
 response = requests.request("PATCH", f"https://api.datawrapper.de/v3/charts/{CHART_ID}", json=metadata_update, headers=headers)
 
+sleep(15)
+
 requests.request("POST", f"https://api.datawrapper.de/v3/charts/{CHART_ID}/publish", headers=headers)
-
-

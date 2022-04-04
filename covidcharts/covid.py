@@ -1,7 +1,12 @@
 import pandas as pd
 import requests
 import os
-from config import DW_AUTH_TOKEN
+
+try:
+    from config import DW_AUTH_TOKEN
+except ModuleNotFoundError:
+    # Error handling
+    pass
 
 CHART_IDS = [
             "DNm2f", # Ontario
