@@ -27,12 +27,12 @@ payload = all.to_csv(sep="\t")
 headers = {
     "Accept": "*/*",
     "Content-Type": "text/csv",
-    "Authorization": f"Bearer {os.environ['AUTH_KEY']}",
+    "Authorization": f"Bearer {os.environ['DW_AUTH_TOKEN']}",
 }
 
 publish_headers = {
     "Accept": "*/*", 
-    "Authorization": f"Bearer {os.environ['AUTH_KEY']}"
+    "Authorization": f"Bearer {os.environ['DW_AUTH_TOKEN']}"
 }
 
 for id in CHART_IDS:
