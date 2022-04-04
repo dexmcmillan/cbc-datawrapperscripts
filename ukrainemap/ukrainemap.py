@@ -3,7 +3,6 @@ import requests
 import json
 import datetime as dt
 import os
-from time import sleep
 
 try:
     from config import DW_AUTH_TOKEN
@@ -106,7 +105,5 @@ metadata_update = {"metadata": {
 }
 
 response = requests.request("PATCH", f"https://api.datawrapper.de/v3/charts/{CHART_ID}", json=metadata_update, headers=headers)
-
-sleep(15)
 
 requests.request("POST", f"https://api.datawrapper.de/v3/charts/{CHART_ID}/publish", headers=headers)
