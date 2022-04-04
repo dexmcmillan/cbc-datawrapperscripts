@@ -3,10 +3,16 @@ import requests
 import json
 import datetime as dt
 import os
+from config import DW_AUTH_TOKEN
 
 ## The ID of the Ukraine map Datawrapper.
 CHART_ID = "sM21M"
-AUTH_KEY = os.environ['DW_AUTH_TOKEN']
+
+if 'DW_AUTH_TOKEN' in os.environ:
+    AUTH_KEY = os.environ['DW_AUTH_TOKEN']
+else:
+    AUTH_KEY = DW_AUTH_TOKEN
+
 
 ## Import sheet data.
 raw = pd.read_csv("https://docs.google.com/spreadsheets/d/17RIbkQI6o_Y_NZalfqZvB8n_j_AmTV5GoNMuzdbkw3w/export?format=csv&gid=0", encoding="utf-8").dropna(how="all", axis=1)
@@ -56,7 +62,7 @@ data_json = (data
 payload = json.loads(data_json)
 
 ## Append the shapes for Crimea, Ukraine etc to our data.
-with open("shapes.json", 'r') as jsonFile:
+with open("ukrainemap/shapes.json", 'r') as jsonFile:
     jsonObject = json.load(jsonFile)
     for shape in jsonObject:
         payload.append(shape)
