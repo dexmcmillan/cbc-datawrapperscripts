@@ -23,6 +23,6 @@ jobs:
 
       - name: Chart update and publish
         env: 
-            AUTH_TOKEN: ${{ secrets.DW_AUTH_TOKEN }}
+            DW_AUTH_TOKEN: ${{ secrets.DW_AUTH_TOKEN }}
         run: python3 covid.py
         

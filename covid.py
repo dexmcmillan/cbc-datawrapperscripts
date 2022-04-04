@@ -12,6 +12,8 @@ CHART_IDS = [
             "pmp9T", # Saskatchewan
              ]
 
+AUTH_KEY = os.environ['DW_AUTH_TOKEN']
+
 ## Prepare data.
 raw = pd.read_csv('https://health-infobase.canada.ca/src/data/covidLive/covid19-download.csv')
 
@@ -27,12 +29,12 @@ payload = all.to_csv(sep="\t")
 headers = {
     "Accept": "*/*",
     "Content-Type": "text/csv",
-    "Authorization": f"Bearer {os.environ['DW_AUTH_TOKEN']}",
+    "Authorization": f"Bearer {AUTH_KEY}",
 }
 
 publish_headers = {
     "Accept": "*/*", 
-    "Authorization": f"Bearer {os.environ['DW_AUTH_TOKEN']}"
+    "Authorization": f"Bearer {AUTH_KEY}"
 }
 
 for id in CHART_IDS:

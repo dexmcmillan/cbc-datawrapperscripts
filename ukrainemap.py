@@ -2,9 +2,11 @@ import pandas as pd
 import requests
 import json
 import datetime as dt
+import os
 
 ## The ID of the Ukraine map Datawrapper.
 CHART_ID = "sM21M"
+AUTH_KEY = os.environ['DW_AUTH_TOKEN']
 
 ## Import sheet data.
 raw = pd.read_csv("https://docs.google.com/spreadsheets/d/17RIbkQI6o_Y_NZalfqZvB8n_j_AmTV5GoNMuzdbkw3w/export?format=csv&gid=0", encoding="utf-8").dropna(how="all", axis=1)
@@ -68,7 +70,7 @@ payload = {"markers": payload}
 headers = {
     "Accept": "*/*",
     "Content-Type": "text/csv",
-    "Authorization": "Bearer f8uy8xNbIvpvFnMdTrcMnHuAPCuhF1epwSxEvEpfTrj0ngPEqLTM6DeZMCYaCsjF",
+    "Authorization": f"Bearer {AUTH_KEY}",
 }
 
 ## Update chart.
@@ -77,11 +79,11 @@ response = requests.request("PUT", f"https://api.datawrapper.de/v3/charts/{CHART
 headers = {
     "Accept": "*/*",
     "Content-Type": "application/json",
-    "Authorization": "Bearer f8uy8xNbIvpvFnMdTrcMnHuAPCuhF1epwSxEvEpfTrj0ngPEqLTM6DeZMCYaCsjF",
+    "Authorization": f"Bearer {AUTH_KEY}",
 }
 
 today = dt.datetime.today()
-day = today.strftime('%B %d, %Y')
+day = (today - dt.timedelta(4)).strftime('%B %d, %Y')
 time = today.strftime('%I:%M') + " " + ".".join(list(today.strftime('%p'))).lower() + "."
 
 metadata_update = {"metadata": {
