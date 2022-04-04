@@ -1,6 +1,2 @@
 pandas
 requests
-json
-ast
-datetime
-os
