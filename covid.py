@@ -29,7 +29,7 @@ payload = all.to_csv(sep="\t")
 headers = {
     "Accept": "*/*",
     "Content-Type": "text/csv",
-    "Authorization": f"Bearer {AUTH_KEY}",
+    "Authorization": f"Bearer {os.environ['DW_AUTH_TOKEN']}",
 }
 
 publish_headers = {
