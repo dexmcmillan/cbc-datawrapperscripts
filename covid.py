@@ -1,5 +1,6 @@
 import pandas as pd
 import requests
+import os
 
 CHART_IDS = [
             "DNm2f", # Ontario
@@ -10,8 +11,6 @@ CHART_IDS = [
             "9H3Bn", # Canada
             "pmp9T", # Saskatchewan
              ]
-
-AUTH_TOKEN = "f8uy8xNbIvpvFnMdTrcMnHuAPCuhF1epwSxEvEpfTrj0ngPEqLTM6DeZMCYaCsjF"
 
 ## Prepare data.
 raw = pd.read_csv('https://health-infobase.canada.ca/src/data/covidLive/covid19-download.csv')
@@ -25,17 +24,15 @@ print(all)
 
 payload = all.to_csv(sep="\t")
 
-
-
 headers = {
     "Accept": "*/*",
     "Content-Type": "text/csv",
-    "Authorization": f"Bearer {AUTH_TOKEN}",
+    "Authorization": f"Bearer {os.environ['AUTH_KEY']}",
 }
 
 publish_headers = {
     "Accept": "*/*", 
-    "Authorization": f"Bearer {AUTH_TOKEN}"
+    "Authorization": f"Bearer {os.environ['AUTH_KEY']}"
 }
 
 for id in CHART_IDS:
