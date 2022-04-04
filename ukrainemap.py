@@ -1,8 +1,7 @@
 import pandas as pd
 import requests
 import json
-from datetime import datetime
-from ast import literal_eval
+import datetime as dt
 
 ## The ID of the Ukraine map Datawrapper.
 CHART_ID = "sM21M"
@@ -36,14 +35,15 @@ data["tooltip"] = data["tooltip"].astype(str).apply(lambda x: json.loads(x.strip
 
 data["markerColor"] = "#c42127"
 
-data["coordinates"] = data["coordinates"].apply(literal_eval)
+data["coordinates"] = data["coordinates"].astype(str).apply(lambda x: json.loads(x.strip(), strict=False))
 
 data["type"] = "point"
 
 data["id"] = range(0,len(data))
 
-data["icon"] = "{'id': '" + data["icon"] + "','path': 'M1000 350a500 500 0 0 0-500-500 500 500 0 0 0-500 500 500 500 0 0 0 500 500 500 500 0 0 0 500-500z','horiz-adv-x': 1000,'scale': 0.42,'height': 700,'width': 1000}"
-data["icon"] = data["icon"].apply(literal_eval)
+data["icon"] = '{"id": "' + data["icon"] + '","path": "M1000 350a500 500 0 0 0-500-500 500 500 0 0 0-500 500 500 500 0 0 0 500 500 500 500 0 0 0 500-500z","horiz-adv-x": 1000,"scale": 0.42,"height": 700,"width": 1000}'
+data["icon"] = data["icon"].astype(str).apply(lambda x: json.loads(x.strip(), strict=False))
+
 data["scale"] = 1.3
 
 ## Convert only the columns we need to JSON.
@@ -80,7 +80,7 @@ headers = {
     "Authorization": "Bearer f8uy8xNbIvpvFnMdTrcMnHuAPCuhF1epwSxEvEpfTrj0ngPEqLTM6DeZMCYaCsjF",
 }
 
-today = datetime.today()
+today = dt.datetime.today()
 day = today.strftime('%B %d, %Y')
 time = today.strftime('%I:%M') + " " + ".".join(list(today.strftime('%p'))).lower() + "."
 

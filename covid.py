@@ -44,7 +44,6 @@ for id in CHART_IDS:
     
     ## Publish chart.
     response = requests.request("POST", f"https://api.datawrapper.de/v3/charts/{id}/publish", headers=headers)
-    response
 
 
 
