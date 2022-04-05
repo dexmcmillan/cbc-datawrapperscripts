@@ -33,15 +33,8 @@ data = (raw
         .reset_index()
         )
 
-data["visibility"] = (data["visibility"]
-                   .astype(str)
-                   .str.lower()
-                    )
-
-print(data["visibility"])
-data["visible"] = data["visibility"].astype(str).str.lower().apply(lambda x: json.loads(x, strict=False))
-data["visibility"] = '{"mobile": ' + data["visibility"].str.lower() + ', "desktop": ' + data["visibility"].str.lower() + '}'
-data["visibility"] = data["visibility"].apply(lambda x: json.loads(x))
+data["visible"] = data["visibility"].astype(str).str.lower()
+data["visibility"] = data["visibility"].str.lower().apply(lambda x: {"desktop": json.loads(x), "mobile": json.loads(x)})
 
 print(data["visibility"])
 
