@@ -25,6 +25,23 @@ raw = pd.read_csv("https://docs.google.com/spreadsheets/d/17RIbkQI6o_Y_NZalfqZvB
 ## Rename columns from the spreadsheet.
 raw.columns = ["title", "tooltip", "source", "hide_title", "visibility", "coordinates", "anchor", "icon"]
 
+marker_properties = [
+    "title",
+    "type",
+    "coordinates",
+    "markerColor",
+    "tooltip",
+    "icon",
+    "scale",
+    "id",
+    "visibility",
+    "visible",
+    "anchor",
+    "text",
+    "offsetX",
+    "offsetY"
+]
+
 ## Clean data.
 data = (raw
         .dropna(how="all")
@@ -33,14 +50,14 @@ data = (raw
         .reset_index()
         )
 
-data["visible"] = data["visibility"].astype(str).str.lower()
-data["visibility"] = data["visibility"].str.lower().apply(lambda x: {"desktop": json.loads(x), "mobile": json.loads(x)})
+data["visible"] = data["visibility"].astype(str).str.lower().apply(lambda x: json.loads(x, strict=False))
 
-print(data["visibility"])
+data["visibility"] = (data["visible"].apply(lambda x: { "mobile": x, "desktop": x }))
 
 data["anchor"] = data["anchor"].str.lower()
 
 data["tooltip"] = data["tooltip"].str.strip().str.replace("\"", '\\"')
+
 data["tooltip"] = '{"text": "<b>' + data["title"] + '</b><br>' + data["tooltip"] + ' <i>(Source: ' + data["source"].fillna("").str.strip().str.replace("\"", "'") + ')</i>"}'
 
 data["tooltip"] = data["tooltip"].astype(str).apply(lambda x: json.loads(x.strip(), strict=False))
@@ -51,21 +68,32 @@ data["coordinates"] = data["coordinates"].astype(str).apply(lambda x: json.loads
 
 data["type"] = "point"
 
-data["id"] = range(0,len(data))
+data["id"] = ['m'+str(x) for x in range(2, len(data) + 2)]
 
 data["icon"] = '{"id": "' + data["icon"] + '","path": "M1000 350a500 500 0 0 0-500-500 500 500 0 0 0-500 500 500 500 0 0 0 500 500 500 500 0 0 0 500-500z","horiz-adv-x": 1000,"scale": 0.42,"height": 700,"width": 1000}'
 data["icon"] = data["icon"].astype(str).apply(lambda x: json.loads(x.strip(), strict=False))
 
 data["scale"] = 1.3
 
+data["text"] = [{
+    "bold": False,
+    "color": "#333333",
+    "fontSize": 14,
+    "halo": "#f2f3f0",
+    "italic": False,
+    "space": False,
+    "uppercase": False
+}] * len(data)
+
+data["offsetX"] = 0
+data["offsetY"] = 0
+
 ## Convert only the columns we need to JSON.
 data_json = (data
-             .loc[:, ["title", "type", "coordinates", "markerColor", "tooltip", "icon", "scale", "id", "visible", "visibility", "anchor"]]
+             .loc[:, marker_properties]
              .to_json(orient='records', index=True)
              )
 payload = json.loads(data_json)
-
-print(payload)
 
 ## Append the shapes for Crimea, Ukraine etc to our data.
 with open("ukrainemap/shapes.json", 'r') as jsonFile:
@@ -77,8 +105,6 @@ with open("ukrainemap/shapes.json", 'r') as jsonFile:
 
 ## Package into the right format for Datawrapper API.
 payload = {"markers": payload}
-
-
 
 ## Define headers for chart update API.
 headers = {
