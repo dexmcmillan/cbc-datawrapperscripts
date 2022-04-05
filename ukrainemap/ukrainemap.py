@@ -23,7 +23,7 @@ else:
 raw = pd.read_csv("https://docs.google.com/spreadsheets/d/17RIbkQI6o_Y_NZalfqZvB8n_j_AmTV5GoNMuzdbkw3w/export?format=csv&gid=0", encoding="utf-8").dropna(how="all", axis=1)
 
 ## Rename columns from the spreadsheet.
-raw.columns = ["title", "tooltip", "source", "hide_title", "visible", "coordinates", "anchor", "icon"]
+raw.columns = ["title", "tooltip", "source", "hide_title", "visibility", "coordinates", "anchor", "icon"]
 
 ## Clean data.
 data = (raw
@@ -33,11 +33,17 @@ data = (raw
         .reset_index()
         )
 
-data["visible"] = (data["visible"]
+data["visibility"] = (data["visibility"]
                    .astype(str)
                    .str.lower()
-                   .apply(lambda x: json.loads(x, strict=False))
                     )
+
+print(data["visibility"])
+
+data["visibility"] = '{"mobile": ' + data["visibility"].str.lower() + ', "desktop": ' + data["visibility"].str.lower() + '}'
+data["visibility"] = data["visibility"].apply(lambda x: json.loads(x))
+
+print(data["visibility"])
 
 data["anchor"] = data["anchor"].str.lower()
 
@@ -61,10 +67,12 @@ data["scale"] = 1.3
 
 ## Convert only the columns we need to JSON.
 data_json = (data
-             .loc[:, ["title", "type", "coordinates", "markerColor", "tooltip", "icon", "scale", "id", "visible", "anchor"]]
+             .loc[:, ["title", "type", "coordinates", "markerColor", "tooltip", "icon", "scale", "id", "visibility", "anchor"]]
              .to_json(orient='records', index=True)
              )
 payload = json.loads(data_json)
+
+print(payload)
 
 ## Append the shapes for Crimea, Ukraine etc to our data.
 with open("ukrainemap/shapes.json", 'r') as jsonFile:
@@ -76,6 +84,8 @@ with open("ukrainemap/shapes.json", 'r') as jsonFile:
 
 ## Package into the right format for Datawrapper API.
 payload = {"markers": payload}
+
+
 
 ## Define headers for chart update API.
 headers = {
