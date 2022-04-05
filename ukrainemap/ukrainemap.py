@@ -39,7 +39,7 @@ data["visibility"] = (data["visibility"]
                     )
 
 print(data["visibility"])
-
+data["visible"] = data["visibility"].astype(str).str.lower().apply(lambda x: json.loads(x, strict=False))
 data["visibility"] = '{"mobile": ' + data["visibility"].str.lower() + ', "desktop": ' + data["visibility"].str.lower() + '}'
 data["visibility"] = data["visibility"].apply(lambda x: json.loads(x))
 
@@ -67,7 +67,7 @@ data["scale"] = 1.3
 
 ## Convert only the columns we need to JSON.
 data_json = (data
-             .loc[:, ["title", "type", "coordinates", "markerColor", "tooltip", "icon", "scale", "id", "visibility", "anchor"]]
+             .loc[:, ["title", "type", "coordinates", "markerColor", "tooltip", "icon", "scale", "id", "visible", "visibility", "anchor"]]
              .to_json(orient='records', index=True)
              )
 payload = json.loads(data_json)
