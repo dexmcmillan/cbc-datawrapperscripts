@@ -20,7 +20,10 @@ else:
 
 
 ## Import sheet data.
-raw = pd.read_csv("https://docs.google.com/spreadsheets/d/17RIbkQI6o_Y_NZalfqZvB8n_j_AmTV5GoNMuzdbkw3w/export?format=csv&gid=0", encoding="utf-8").dropna(how="all", axis=1)
+raw = (pd
+       .read_csv("https://docs.google.com/spreadsheets/d/17RIbkQI6o_Y_NZalfqZvB8n_j_AmTV5GoNMuzdbkw3w/export?format=csv&gid=0", encoding="utf-8")
+       .dropna(how="all", axis=1)
+       )
 
 ## Rename columns from the spreadsheet.
 raw.columns = ["title", "tooltip", "source", "hide_title", "visibility", "coordinates", "anchor", "icon"]
@@ -51,6 +54,8 @@ data = (raw
         )
 
 data["visible"] = data["visibility"].astype(str).str.lower().apply(lambda x: json.loads(x, strict=False))
+
+data["source"] = data["source"].fillna("")
 
 data["visibility"] = (data["visible"].apply(lambda x: { "mobile": x, "desktop": x }))
 
@@ -126,13 +131,34 @@ today = dt.datetime.today()
 day = (today - dt.timedelta(hours=4)).strftime('%B %d, %Y')
 time = today.strftime('%I:%M') + " " + ".".join(list(today.strftime('%p'))).lower() + "."
 
+source_list = set(data["source"].to_list())
+source_list_clean = []
+for entry in source_list:
+    try:
+        word = entry.split(", ")
+        print(word)
+        source_list_clean.append(word)
+    except:
+        pass
+
+source_list_clean = [item for sublist in source_list_clean for item in sublist]
+source_list_clean = [x for x in source_list_clean if x]
+source_list_clean = set(source_list_clean)
+
+
+source_string = ", ".join(source_list_clean)
+print(source_string)
+
 metadata_update = {"metadata": {
     "annotate": {
         "notes": f"Last updated on {day} at {time} EST.".replace(" 0", " ")
+    },
+    "describe": {
+        "source-name": "Source: " + source_string + "."
     }
 }
 }
 
-response = requests.request("PATCH", f"https://api.datawrapper.de/v3/charts/{CHART_ID}", json=metadata_update, headers=headers)
+requests.request("PATCH", f"https://api.datawrapper.de/v3/charts/{CHART_ID}", json=metadata_update, headers=headers)
 
 requests.request("POST", f"https://api.datawrapper.de/v3/charts/{CHART_ID}/publish", headers=headers)
