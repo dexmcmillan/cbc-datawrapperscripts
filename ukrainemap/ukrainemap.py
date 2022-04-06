@@ -10,8 +10,8 @@ except ModuleNotFoundError:
     # Error handling
     pass
 
-## The ID of the Ukraine map Datawrapper.
-CHART_ID = "sM21M"
+## The ID of the Ukraine map Datawrapper. (LIVE CHART ID: wQIM1)
+CHART_ID = "wQIM1"
 
 if 'DW_AUTH_TOKEN' in os.environ:
     AUTH_KEY = os.environ['DW_AUTH_TOKEN']
@@ -78,7 +78,7 @@ data["id"] = ['m'+str(x) for x in range(2, len(data) + 2)]
 data["icon"] = '{"id": "' + data["icon"] + '","path": "M1000 350a500 500 0 0 0-500-500 500 500 0 0 0-500 500 500 500 0 0 0 500 500 500 500 0 0 0 500-500z","horiz-adv-x": 1000,"scale": 0.42,"height": 700,"width": 1000}'
 data["icon"] = data["icon"].astype(str).apply(lambda x: json.loads(x.strip(), strict=False))
 
-data["scale"] = 1.3
+data["scale"] = 1.2
 
 data["text"] = [{
     "bold": False,
@@ -131,12 +131,11 @@ today = dt.datetime.today()
 day = (today - dt.timedelta(hours=4)).strftime('%B %d, %Y')
 time = today.strftime('%I:%M') + " " + ".".join(list(today.strftime('%p'))).lower() + "."
 
-source_list = set(data["source"].to_list())
+source_list = set(raw.loc[raw["visibility"] == "TRUE","source"].to_list())
 source_list_clean = []
 for entry in source_list:
     try:
         word = entry.split(", ")
-        print(word)
         source_list_clean.append(word)
     except:
         pass
@@ -154,7 +153,7 @@ metadata_update = {"metadata": {
         "notes": f"Last updated on {day} at {time} EST.".replace(" 0", " ")
     },
     "describe": {
-        "source-name": "Source: " + source_string + "."
+        "source-name": source_string + "."
     }
 }
 }
