@@ -7,17 +7,10 @@ import os
 try:
     from config import DW_AUTH_TOKEN
 except ModuleNotFoundError:
-    # Error handling
-    pass
+    DW_AUTH_TOKEN = os.environ['DW_AUTH_TOKEN']
 
 ## The ID of the Ukraine map Datawrapper. (LIVE CHART ID: wQIM1)
 CHART_ID = "wQIM1"
-
-if 'DW_AUTH_TOKEN' in os.environ:
-    AUTH_KEY = os.environ['DW_AUTH_TOKEN']
-else:
-    AUTH_KEY = DW_AUTH_TOKEN
-
 
 ## Import sheet data.
 raw = (pd
@@ -115,7 +108,7 @@ payload = {"markers": payload}
 headers = {
     "Accept": "*/*",
     "Content-Type": "text/csv",
-    "Authorization": f"Bearer {AUTH_KEY}",
+    "Authorization": f"Bearer {DW_AUTH_TOKEN}",
 }
 
 ## Update chart.
@@ -124,7 +117,7 @@ response = requests.request("PUT", f"https://api.datawrapper.de/v3/charts/{CHART
 headers = {
     "Accept": "*/*",
     "Content-Type": "application/json",
-    "Authorization": f"Bearer {AUTH_KEY}",
+    "Authorization": f"Bearer {DW_AUTH_TOKEN}",
 }
 
 today = dt.datetime.today()
@@ -159,5 +152,4 @@ metadata_update = {"metadata": {
 }
 
 requests.request("PATCH", f"https://api.datawrapper.de/v3/charts/{CHART_ID}", json=metadata_update, headers=headers)
-
 requests.request("POST", f"https://api.datawrapper.de/v3/charts/{CHART_ID}/publish", headers=headers)
