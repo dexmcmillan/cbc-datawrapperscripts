@@ -117,8 +117,8 @@ headers = {
     "Authorization": f"Bearer {DW_AUTH_TOKEN}",
 }
 
-today = dt.datetime.today()
-day = (today - dt.timedelta(hours=4)).strftime('%B %d, %Y')
+today = dt.datetime.today() - dt.timedelta(hours=4)
+day = today.strftime('%B %d, %Y')
 time = today.strftime('%I:%M') + " " + ".".join(list(today.strftime('%p'))).lower() + "."
 
 metadata_update = {"metadata": {
