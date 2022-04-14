@@ -9,7 +9,7 @@ try:
 except ModuleNotFoundError:
     DW_AUTH_TOKEN = os.environ['DW_AUTH_TOKEN']
 
-## The ID of the Ukraine map Datawrapper. (LIVE CHART ID: wQIM1)
+## The ID of the Ukraine map Datawrapper. (LIVE CHART ID: wQIM1. TEST CHART ID: sM21M)
 CHART_ID = "wQIM1"
 
 ## Import sheet data.
