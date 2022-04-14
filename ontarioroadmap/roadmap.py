@@ -2,6 +2,7 @@ import pandas as pd
 import json
 import os
 import requests
+import datetime as dt
 
 try:
     from config import DW_AUTH_TOKEN
@@ -107,3 +108,27 @@ headers = {
 response = requests.request("PUT", f"https://api.datawrapper.de/v3/charts/{CHART_ID}/data", headers=headers, data=json.dumps(payload))
 
 print(response)
+
+# Define new headers for Metadata update.
+
+headers = {
+    "Accept": "*/*",
+    "Content-Type": "application/json",
+    "Authorization": f"Bearer {DW_AUTH_TOKEN}",
+}
+
+today = dt.datetime.today()
+day = (today - dt.timedelta(hours=4)).strftime('%B %d, %Y')
+time = today.strftime('%I:%M') + " " + ".".join(list(today.strftime('%p'))).lower() + "."
+
+metadata_update = {"metadata": {
+    "annotate": {
+        "notes": f"Last updated on {day} at {time} EST.".replace(" 0", " ")
+    }
+}
+}
+
+## Publish chart
+update = requests.request("PATCH", f"https://api.datawrapper.de/v3/charts/{CHART_ID}", json=metadata_update, headers=headers)
+print(update.text)
+requests.request("POST", f"https://api.datawrapper.de/v3/charts/{CHART_ID}/publish", headers=headers)
