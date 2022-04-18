@@ -120,8 +120,10 @@ headers = {
     "Authorization": f"Bearer {DW_AUTH_TOKEN}",
 }
 
+## If this is running via github actions, you'll want to subtract 4 hours from the day variable.
+
 today = dt.datetime.today()
-day = (today - dt.timedelta(hours=4)).strftime('%B %d, %Y')
+day = (today).strftime('%B %d, %Y')
 time = today.strftime('%I:%M') + " " + ".".join(list(today.strftime('%p'))).lower() + "."
 
 source_list = set(raw.loc[raw["visibility"] == "TRUE","source"].to_list())
