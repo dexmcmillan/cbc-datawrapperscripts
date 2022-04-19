@@ -3,10 +3,10 @@ import requests
 import os
 
 try:
-    from config import DW_AUTH_TOKEN
-except ModuleNotFoundError:
-    # Error handling
-    pass
+    with open('./auth.txt', 'r') as f:
+        DW_AUTH_TOKEN = f.read().strip()    
+except:
+    DW_AUTH_TOKEN = os.environ['DW_AUTH_TOKEN']
 
 CHART_IDS = [
             "DNm2f", # Ontario

@@ -5,8 +5,9 @@ import datetime as dt
 import os
 
 try:
-    from config import DW_AUTH_TOKEN
-except ModuleNotFoundError:
+    with open('./auth.txt', 'r') as f:
+        DW_AUTH_TOKEN = f.read().strip()    
+except:
     DW_AUTH_TOKEN = os.environ['DW_AUTH_TOKEN']
 
 ## The ID of the Ukraine map Datawrapper. (LIVE CHART ID: wQIM1. TEST CHART ID: sM21M)

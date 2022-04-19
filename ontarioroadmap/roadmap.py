@@ -5,8 +5,9 @@ import requests
 import datetime as dt
 
 try:
-    from config import DW_AUTH_TOKEN
-except ModuleNotFoundError:
+    with open('./auth.txt', 'r') as f:
+        DW_AUTH_TOKEN = f.read().strip()    
+except:
     DW_AUTH_TOKEN = os.environ['DW_AUTH_TOKEN']
 
 ## The ID of the Ukraine map Datawrapper.

@@ -1,0 +1,29 @@
+name: Update inflation graphic
+on:
+  schedule:
+    - cron: 0/10 * * * *
+    - cron: 0 13 16-22 * *
+
+jobs:
+  pull_data:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Chart update and publish
+        env: 
+            DW_AUTH_TOKEN: ${{ secrets.DW_AUTH_TOKEN }}
+        run: python3 inflation/20220419-INFLATION.py
+        
