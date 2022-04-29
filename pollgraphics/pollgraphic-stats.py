@@ -2,6 +2,7 @@ import pandas as pd
 import requests
 import os
 from datawrapper import Datawrapper
+import datetime as dt
 
 # This code runs differently depending on whether the script is running on a local machine or via Github actions.
 
@@ -13,11 +14,11 @@ except:
     
 # Read in data from the poll tracker API into a pandas dataframe.
 
-raw = requests.get("https://canopy.cbc.ca/live/poll-tracker/v4/CAN").json()['data']["stats"]
+raw = requests.get("https://canopy.cbc.ca/live/poll-tracker/v5/ON").json()['data']["stats"]
 
 # Reshape the data a little bit to prepare it for the datawrapper.
 regions = raw[0]["rows"].keys()
-parties = raw[0]["rows"]["Canada"].keys()
+parties = raw[0]["rows"]["Ontario"].keys()
 
 data = []
 
@@ -46,7 +47,20 @@ dw = Datawrapper(access_token=DW_AUTH_TOKEN)
 # Add above data to over time polling line chart.
 dw.add_data(chart_id="VxY9x", data=export)
 
-# Most recent polling data chart.
-recent = export.sort_values("datetime", ascending=False).iloc[0:2, 0:8].set_index("datetime").transpose().reset_index()
+# Chart for most recent polling data.
+# Get the data
+recent = export.sort_values("datetime", ascending=False).iloc[0:2, 0:7].set_index("datetime").transpose().reset_index()
+
+today = dt.datetime.today()
+day = (today).strftime('%B %d, %Y')
+time = today.strftime('%I:%M') + " " + ".".join(list(today.strftime('%p'))).lower() + "."
+
+metadata_update = {
+    "annotate": {
+        "notes": f"Last updated on {day}."
+    }
+}
 
 dw.add_data(chart_id="9ya4P", data=recent)
+dw.update_metadata(chart_id="9ya4P", properties=metadata_update)
+dw.publish_chart(chart_id="9ya4P")

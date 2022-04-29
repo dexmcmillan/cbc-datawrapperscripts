@@ -19,6 +19,8 @@ raw = (pd
        .dropna(how="all", axis=1)
        )
 
+print(raw)
+
 ## Rename columns from the spreadsheet.
 raw.columns = ["title", "tooltip", "source", "hide_title", "visibility", "coordinates", "anchor", "icon"]
 
