@@ -87,12 +87,48 @@ data_json = (data
              )
 payload = json.loads(data_json)
 
-## Append the shapes for Crimea, Ukraine etc to our data.
-with open("ontarioroadmap/shapes.json", 'r') as jsonFile:
-    jsonObject = json.load(jsonFile)
-    for shape in jsonObject:
-        payload.append(shape)
-    jsonFile.close()
+## Append parliament hill marker
+shape = {'id': 'm11',
+  'wikidata': 'Q1589289',
+  'type': 'point',
+  'title': 'Parliament Hill',
+  'icon': {'id': 'star-2',
+   'path': 'M1050 464q0-15-29-38l-275-200 105-323q5-17 5-30 0-24-18-24-17 0-38 17l-275 199-275-199q-23-17-39-17-18 0-18 23 0 11 6 31l105 323-275 200q-29 21-29 37 0 23 49 23l340-1 104 324q12 40 32 40 19 0 31-40l106-324 339 1q49 0 49-22z',
+   'horiz-adv-x': 1050,
+   'height': 698,
+   'width': 1050},
+  'scale': 1,
+  'textPosition': None,
+  'markerColor': '#333333',
+  'markerSymbol': '',
+  'markerTextColor': '#333333',
+  'anchor': 'top-center',
+  'offsetY': 0,
+  'offsetX': 0,
+  'labelStyle': 'plain',
+  'text': {'bold': False,
+   'italic': False,
+   'uppercase': False,
+   'space': False,
+   'color': '#333333',
+   'fontSize': 14,
+   'halo': '#f2f3f0'},
+  'class': '',
+  'rotate': 0,
+  'visible': True,
+  'locked': False,
+  'preset': '-',
+  'visibility': {'mobile': True, 'desktop': True},
+  'tooltip': {'enabled': False, 'text': ''},
+  'connectorLine': {'enabled': False,
+   'arrowHead': 'lines',
+   'type': 'curveRight',
+   'targetPadding': 3,
+   'stroke': 1,
+   'lineLength': 0},
+  'coordinates': [-75.6989456, 45.4241332],
+  'orgLatLng': [-75.6989456, 45.4241332]}
+payload.append(shape)
 
 ## Package into the right format for Datawrapper API.
 payload = {"markers": payload}
