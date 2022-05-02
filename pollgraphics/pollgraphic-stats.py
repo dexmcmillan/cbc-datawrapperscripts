@@ -33,8 +33,10 @@ for region in regions:
         data.append(df)
 
 data = pd.concat(data)
+data["datetime"] = pd.to_datetime(data["datetime"]).dt.date
 
 export = data[(data["Type"] == "med") & (data["Region"] == "Ontario")].pivot(index="datetime", columns="Party", values=0)
+
 
 for col, values in export.iteritems():
     export[col + "_rolling"] = export[col].rolling(7).mean()
@@ -46,6 +48,7 @@ dw = Datawrapper(access_token=DW_AUTH_TOKEN)
 
 # Add above data to over time polling line chart.
 dw.add_data(chart_id="VxY9x", data=export)
+dw.publish_chart(chart_id="VxY9x")
 
 # Chart for most recent polling data.
 # Get the data
