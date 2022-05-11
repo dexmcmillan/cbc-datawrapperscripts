@@ -11,7 +11,7 @@ except:
     DW_AUTH_TOKEN = os.environ['DW_AUTH_TOKEN']
 
 ## The ID of the Ukraine map Datawrapper.
-CHART_ID = "WG4XF"
+CHART_ID = "RHK8m"
 
 raw = pd.read_json("https://511on.ca/api/v2/get/event")
 
@@ -118,7 +118,13 @@ headers = {
     "Authorization": f"Bearer {DW_AUTH_TOKEN}",
 }
 
-today = dt.datetime.today() - dt.timedelta(hours=4)
+os_name = os.name
+
+if os_name == "posix":
+    today = dt.datetime.today() - dt.timedelta(hours=4)
+else:
+    today = dt.datetime.today()  
+    
 day = today.strftime('%B %d, %Y')
 time = today.strftime('%I:%M') + " " + ".".join(list(today.strftime('%p'))).lower() + "."
 

@@ -23,7 +23,7 @@ An [automatically updating map](https://datawrapper.dwcdn.net/WG4XF/43/) that us
 
 ## Ontario polling graphics
 Active  
-Created as a backup to a CBC Newslabs presentation. These graphics started visualizing data as of April 28, 2022
+Created as a backup to a CBC Newslabs presentation. These graphics have moved to [a new repository](https://github.com/dexmcmillan/cbc-polling-graphics).
 
 ## Ottawa road map
 Active  
