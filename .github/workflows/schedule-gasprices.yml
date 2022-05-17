@@ -1,0 +1,25 @@
+name: Gas price graphic update
+on:
+  schedule:
+    - cron: 0 12 * * *
+
+jobs:
+  take_screenshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run script
+        run: python3 gasprices/gasprices.py
