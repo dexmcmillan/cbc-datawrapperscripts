@@ -1,7 +1,6 @@
 import requests
 import geopandas
 import json
-import os
 import dwmaps
 
 CHART_ID = "HufI4"
@@ -20,7 +19,6 @@ data["stroke"] = data["Advisory"].replace(
     })
 
 data["fill"] = data["stroke"]
-data["opacity"] = 0.5
 data['id'] = range(0, len(data))
 data["id"] = data['id'].apply(lambda x: f"m{x}")
 data["title"] = data["Major_Basin"]
@@ -30,6 +28,7 @@ data["type"] = "area"
 chart = dwmaps.DatawrapperMaps(chart_id=CHART_ID)
 dw = (chart
       .upload(data)
-      .title("Current flood warnings in B.C.")
+      .head("Current flood warnings in B.C.")
       .timestamp()
+      .publish()
       )

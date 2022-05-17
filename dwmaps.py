@@ -59,44 +59,35 @@ class DatawrapperMaps:
         
         for feature in features:
             
-            icon = ""
+            
             new_feature = {}
             
-            if feature["type"] == "area":
-        
-                new_feature = {'id': feature["properties"]["id"],
-                                'data': feature["properties"],
-                                'type': feature["properties"]["type"],
-                                'title': feature["properties"]["title"],
-                                'visible': True,
-                                'fill': True,
-                                'stroke': True,
-                                'exactShape': False,
-                                'highlight': False,
-                                'icon': icon,
-                                'feature': feature,
-                                'properties': {'fill': feature["properties"]["fill"],
-                                            'fill-opacity': feature["properties"]["opacity"],
-                                            'stroke': feature["properties"]["stroke"],
-                                            'stroke-width': 1,
-                                            'stroke-opacity': 1,
-                                            'stroke-dasharray': '100000',
-                                            'pattern': 'solid',
-                                            'pattern-line-width': 2,
-                                            'pattern-line-gap': 2},
-                                'visibility': {'mobile': True, 'desktop': True}
-                                }
-            else:
-                with open(f"assets/point.json", 'r') as f:
-                    new_feature = json.load(f)
-                    new_feature["data"] = feature["properties"]
-                    new_feature["id"] = feature["properties"]['id']
-                    new_feature["coordinates"] = feature["geometry"]["coordinates"]
-                    new_feature["markerColor"] = feature["properties"]["markerColor"]
-                    new_feature["scale"] = feature["properties"]["scale"]
-                    new_feature["tooltip"]["text"] = feature["properties"]["tooltip"]
+            id = feature["properties"]["id"]
+            marker_type = feature["properties"]["type"]
+            title = feature["properties"]["title"]
             
-            new_features.append(new_feature)
+            with open(f"assets/{marker_type}.json", 'r') as f:
+                new_feature = json.load(f)
+                
+                new_feature["id"] = id
+                new_feature["type"] = marker_type
+                new_feature["title"] = title
+                new_feature["data"] = feature["properties"]
+                
+                try: new_feature["tooltip"]["text"] = feature["properties"]["tooltip"]
+                except: print(f"Tooltip not specified. Skipping this element.")
+                
+                for element in ["id", "markerColor", "scale"]:
+                        try: new_feature[element] = feature["properties"][element]
+                        except: print(f"{element} not specified. Skipping this element.")
+                
+                if marker_type == "point":
+                    new_feature["coordinates"] = feature["geometry"]["coordinates"]     
+                else:
+                    new_feature["feature"] = feature    
+
+            
+                new_features.append(new_feature)
         
         if os.path.exists(f"shapes/shapes-{script_name}.json"):
             with open(f"shapes/shapes-{script_name}.json", 'r') as f:

@@ -30,6 +30,7 @@ avg = data["CURRENT_SIZE"].min()
 std = data["CURRENT_SIZE"].std()
 
 data["scale"] = ((data["CURRENT_SIZE"] - avg) / (std)) + 1
+data["scale"] = data["scale"].apply(lambda x: 2.2 if x > 2.2 else x)
 
 data["tooltip"] = "<big>Fire at " + data['GEOGRAPHIC_DESCRIPTION'] + "</big><br><b>Status</b>: " + data['FIRE_STATUS'] + "</span><br><b>Started by</b>: " + data["FIRE_CAUSE"] + "<br><b>Estimated size</b>: " + data["CURRENT_SIZE"].astype(str) + " hectares"
 
