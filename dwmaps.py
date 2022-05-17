@@ -199,3 +199,15 @@ class DatawrapperMaps:
         dw.update_metadata(chart_id=self.CHART_ID, properties=data)
         
         return self
+    
+    
+    
+    
+    
+    def publish(self):
+        
+        dw = Datawrapper(access_token=self.__auth())
+        
+        dw.publish_chart(chart_id=self.CHART_ID)
+        
+        return self

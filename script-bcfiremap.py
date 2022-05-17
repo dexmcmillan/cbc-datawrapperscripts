@@ -41,4 +41,5 @@ dw = (chart
       .head(f"There are <b>{len(data)} wildfires</b> burning across B.C.")
       .deck(f"As of today, {round(len(data[data['FIRE_STATUS'] == 'Under Control'])/len(data)*100, 1)}% are listed as under control.", "B.C. Wildfire Centre")
       .timestamp()
+      .publish()
       )
