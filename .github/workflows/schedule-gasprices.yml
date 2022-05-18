@@ -1,7 +1,7 @@
 name: Gas price graphic update
 on:
   schedule:
-    - cron: 0 12 * * *
+    - cron: 0 13 * * *
 
 jobs:
   take_screenshot:
@@ -22,4 +22,4 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run script
-        run: python3 gasprices/gasprices.py
+        run: python3 script-gasprices.py
