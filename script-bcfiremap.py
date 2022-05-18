@@ -13,16 +13,9 @@ data = geopandas.read_file(json.dumps(r.json()))
 print(data)
 
 data["opacity"] = 0.5
-data['id'] = range(0, len(data))
-data["id"] = data['id'].apply(lambda x: f"m{x}")
-data["title"] = ""
 data["type"] = "points"
-data["fill"] = "black"
-data["stroke"] = "black"
 
-data["icon"] = "fire"
-
-data["markerColor"] = data["FIRE_STATUS"].replace({"Under Control": "#436170", "New": "#F8C325"})
+data["markerColor"] = data["FIRE_STATUS"].replace({"Under Control": "#436170", "New": "#F8C325", "Out of Control": "#c42127"})
 
 data["type"] = "point"
 

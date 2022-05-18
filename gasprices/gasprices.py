@@ -92,8 +92,8 @@ series["City"] = series["Text"]
 series = series.drop(columns=["Text", "Date", "Fuel Type", "Price", "Change_y", "Prediction?"]).sort_values("Today", ascending=False)
 series.columns = ["City", "Current price", "Predicted Value", "Change_x", "Forecast", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, "Direction"]
 
-series.loc[series["Forecast"].gt(0), "City"] = series["City"] + "<br>Tomorrow: +" + series["Forecast"].astype(str) + " cents"
-series.loc[series["Forecast"].lt(0), "City"] = series["City"] + "<br>Tomorrow: " + series["Forecast"].astype(str) + " cents"
+series.loc[series["Forecast"].gt(0), "City"] = series["City"] + "<br>Tomorrow: +" + round(series["Forecast"],1).astype(str) + " cents"
+series.loc[series["Forecast"].lt(0), "City"] = series["City"] + "<br>Tomorrow: " + round(series["Forecast"],1).astype(str) + " cents"
 series["City"] = series["City"].str.replace("-", "▼")
 series["City"] = series["City"].str.replace("+", "▲")
 

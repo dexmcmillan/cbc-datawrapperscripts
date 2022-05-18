@@ -10,20 +10,11 @@ r = requests.get("https://services.arcgis.com/Eb8P5h4CJk8utIBz/ArcGIS/rest/servi
 
 data = geopandas.read_file(json.dumps(r.json()))
 
-print(data.columns)
-
 data["opacity"] = 0.5
 data = data.drop(columns="ID")
-data['id'] = range(0, len(data))
-data["id"] = data['id'].apply(lambda x: f"m{x}")
-data["title"] = ""
 data["type"] = "points"
-data["fill"] = "black"
-data["stroke"] = "black"
 
-data["icon"] = "fire"
-
-data["markerColor"] = data["FIRE_STATUS"].replace({"Under Control": "#436170", "New": "#F8C325"})
+data["markerColor"] = data["FIRE_STATUS"].replace({"Under Control": "#436170", "New": "#F8C325", "Out of Control": "#c42127"})
 
 data["type"] = "point"
 
@@ -33,15 +24,20 @@ std = data["AREA_ESTIMATE"].std()
 data["scale"] = ((data["AREA_ESTIMATE"] - avg) / (std)) + 1
 data["scale"] = data["scale"].apply(lambda x: 2.2 if x > 2.2 else x)
 
-data["tooltip"] = "<big>" + data['LABEL'] + "</big><br><b>Status</b>: " + data['FIRE_STATUS'] + "</span>"
+data["tooltip"] = "<big>" + data['RESP_AREA'] + "</big><br><b>Status</b>: " + data['FIRE_STATUS'] + "</span>" + "<br><b>Cause</b>: " + data["GENERAL_CAUSE"] 
 
+print(data)
 
-print(data.columns)
+percent_under_control = round(len(data[data['FIRE_STATUS'] == 'Under Control'])/len(data)*100, 0)
+
+head = f"There are <b>{len(data)} wildfires</b> burning across Alberta"
+deck = f"As of today, {percent_under_control}% are listed as under control."
+
 chart = dwmaps.DatawrapperMaps(chart_id=CHART_ID)
 dw = (chart
       .upload(data)
-      .head(f"There are <b>{len(data)} wildfires</b> burning across Alberta")
-      .deck(f"As of today, {round(len(data[data['FIRE_STATUS'] == 'Under Control'])/len(data)*100, 1)}% are listed as under control.", "Government of Alberta")
+      .head(head)
+      .deck(deck, "Government of Alberta")
       .timestamp()
       .publish()
       )

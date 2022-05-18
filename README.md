@@ -18,7 +18,7 @@ Operational
 [This map](https://www.datawrapper.de/_/sM21M/) takes points from a Google sheet updated by CBC journalists and populates a map for use in stories about the war in Ukraine.
 
 ## Ontario road map
-Retired: May 2022  
+Active
 An [automatically updating map](https://datawrapper.dwcdn.net/WG4XF/43/) that uses Ontario 511 data to plot road closures onto a CBC-branded map. A script kept this updated every hour.
 
 ## Ontario polling graphics
@@ -26,5 +26,5 @@ Active
 Created as a backup to a CBC Newslabs presentation. These graphics have moved to [a new repository](https://github.com/dexmcmillan/cbc-polling-graphics).
 
 ## Ottawa road map
-Active  
+Retired  
 [A map](https://datawrapper.dwcdn.net/E95GT/4/) showing points from Ottawa's traffic API to show the road closures due to the Rolling Thunder convoy. Began visualizing data as of April 29, 2022

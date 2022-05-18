@@ -19,8 +19,6 @@ data["stroke"] = data["Advisory"].replace(
     })
 
 data["fill"] = data["stroke"]
-data['id'] = range(0, len(data))
-data["id"] = data['id'].apply(lambda x: f"m{x}")
 data["title"] = data["Major_Basin"]
 data["type"] = "area"
 
@@ -28,7 +26,7 @@ data["type"] = "area"
 chart = dwmaps.DatawrapperMaps(chart_id=CHART_ID)
 dw = (chart
       .upload(data)
-      .head("Current flood warnings in B.C.")
+      .head(f"There are <b>{len(data)} flood warnings</b> across B.C.")
       .timestamp()
       .publish()
       )
