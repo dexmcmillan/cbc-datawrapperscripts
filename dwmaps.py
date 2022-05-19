@@ -147,9 +147,17 @@ class DatawrapperMaps:
         
         dw = Datawrapper(access_token=self.__auth())
         
+        os_name = os.name
+        
         today = datetime.datetime.today()
+        
+        if os_name == "posix":
+            today = today - datetime.timedelta(hours=4)
+        
         time = today.strftime('%I:%M') + " " + ".".join(list(today.strftime('%p'))).lower() + "."
         day = today.strftime('%B %d, %Y')
+        
+        
     
 
         headers = {

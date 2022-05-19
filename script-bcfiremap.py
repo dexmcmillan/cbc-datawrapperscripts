@@ -15,7 +15,7 @@ print(data)
 data["opacity"] = 0.5
 data["type"] = "points"
 
-data["markerColor"] = data["FIRE_STATUS"].replace({"Under Control": "#436170", "New": "#F8C325", "Out of Control": "#c42127"})
+data["markerColor"] = data["FIRE_STATUS"].replace({"Under Control": "#436170", "New": "#F8C325", "Out of Control": "#c42127", "Being Held": "#000000"})
 
 data["type"] = "point"
 
@@ -27,6 +27,8 @@ data["scale"] = data["scale"].apply(lambda x: 2.2 if x > 2.2 else x)
 
 data["tooltip"] = "<big>Fire at " + data['GEOGRAPHIC_DESCRIPTION'] + "</big><br><b>Status</b>: " + data['FIRE_STATUS'] + "</span><br><b>Started by</b>: " + data["FIRE_CAUSE"] + "<br><b>Estimated size</b>: " + data["CURRENT_SIZE"].astype(str) + " hectares"
 
+print(data["markerColor"])
+print(data.columns)
 
 
 chart = dwmaps.DatawrapperMaps(chart_id=CHART_ID)

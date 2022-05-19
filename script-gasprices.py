@@ -5,10 +5,9 @@ import os
 import re
 
 try:
-    with open('./auth.txt', 'r') as f:
+    with open('auth.txt', 'r') as f:
         DW_AUTH_TOKEN = f.read().strip()    
-except:
-    DW_AUTH_TOKEN = os.environ['DW_AUTH_TOKEN']
+except: DW_AUTH_TOKEN = os.environ['DW_AUTH_TOKEN']
 
 dw = Datawrapper(access_token=DW_AUTH_TOKEN)
 
