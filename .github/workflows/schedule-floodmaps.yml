@@ -28,10 +28,16 @@ jobs:
         run: |
           python3 script-bcfloodmap.py
 
-      - name: Update BC flood warning chart
+      - name: Update BC fire map
         env: 
             DW_AUTH_TOKEN: ${{ secrets.DW_AUTH_TOKEN }}
         run: |
           python3 script-bcfiremap.py
+
+      - name: Update Alta. fire chart
+        env: 
+            DW_AUTH_TOKEN: ${{ secrets.DW_AUTH_TOKEN }}
+        run: |
+          python3 script-abfiremap.py
 
       
