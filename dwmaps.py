@@ -4,6 +4,7 @@ import os
 import datetime
 from datawrapper import Datawrapper
 import sys
+import pandas as pd
 
 
 class DatawrapperMaps:
@@ -37,17 +38,49 @@ class DatawrapperMaps:
      
      
      
+    def df_to_geojson(self, dframe, lat='latitude', lon='longitude'):
+        print(dframe)
+        # create a new python dict to contain our geojson data, using geojson format
+        geojson = {'type':'FeatureCollection', 'features':[]}
+
+        # loop through each row in the dataframe and convert each row to geojson format
+        for _, row in dframe.iterrows():
+            # create a feature template to fill in
+            feature = {'type':'Feature',
+                    'properties':{},
+                    'geometry':{'type':'Point',
+                                'coordinates':[]}}
+
+            # fill in the coordinates
+            feature['geometry']['coordinates'] = [row[lon],row[lat]]
+
+            # for each column, get the value and add it as a new feature property
+            for prop in dframe.columns:
+                feature['properties'][prop] = row[prop]
+            
+            # add this feature (aka, converted dataframe row) to the list of features inside our dict
+            geojson['features'].append(feature)
+        
+        return geojson
+     
+     
+     
+     
         
     def upload(self, data):
         
         headers = {"Authorization": f"Bearer {self.__auth()}"}
         
-        data = data.to_crs("EPSG:4326")
-        
         data['id'] = range(0, len(data))
         data["id"] = data['id'].apply(lambda x: f"m{x}")
         
-        features = json.loads(data.to_json())["features"]
+        if isinstance(data, pd.DataFrame):
+            data = self.df_to_geojson(data)
+        else:
+            data = data.to_crs("EPSG:4326")
+            data = json.loads(data.to_json())
+        
+        features = data["features"]
         
         new_features = []
         
@@ -56,10 +89,11 @@ class DatawrapperMaps:
             new_feature = {
                     "id": feature["properties"]["id"],
                     "type": feature["properties"]["type"],
-                    "data": feature["properties"]
+                    "data": feature["properties"],
+                    "icon": feature["properties"]["icon"]
                 }
             
-            with open(f"assets/{new_feature['type']}.json", 'r') as f:
+            with open(f"assets/{new_feature['type']}{'-' + new_feature['icon'] if new_feature['type'] == 'point' else ''}.json", 'r') as f:
                 
                 new_feature = json.load(f)
                 
@@ -196,23 +230,19 @@ class DatawrapperMaps:
     
     
     
-    def get_markers(self, chart_id=None, save=False):
-        
-        if chart_id == None:
-            chart_id = self.CHART_ID
+    def get_markers(self, save=False):
         
         headers = {
             "Accept": "text/csv",
             "Authorization": f"Bearer {self.__auth()}"
             }
         
-        response = requests.get("https://api.datawrapper.de/v3/charts/L45df/data", headers=headers)
+        print(self.CHART_ID)
+        response = requests.get(f"https://api.datawrapper.de/v3/charts/{self.CHART_ID}/data", headers=headers)
         markers = response.json()["markers"]
         
-        print(markers)
-        
         if save:
-            with open("markers-{self.script_name}.json", 'w') as f:
+            with open(f"markers-{self.script_name}.json", 'w') as f:
                 json.dump(markers, f)
                 
         return markers

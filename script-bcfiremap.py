@@ -18,6 +18,7 @@ data["type"] = "points"
 data["markerColor"] = data["FIRE_STATUS"].replace({"Under Control": "#436170", "New": "#F8C325", "Out of Control": "#c42127", "Being Held": "#000000"})
 
 data["type"] = "point"
+data["icon"] = "fire"
 
 avg = data["CURRENT_SIZE"].min()
 std = data["CURRENT_SIZE"].std()

@@ -1,3 +1,3 @@
 import dwmaps
 
-print(dwmaps.DatawrapperMaps("Os1m6").get_markers())
+print(dwmaps.DatawrapperMaps("j6kHN").get_markers(save=True)[-1])
