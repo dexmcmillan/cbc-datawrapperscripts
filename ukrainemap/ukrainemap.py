@@ -45,7 +45,6 @@ marker_properties = [
 data = (raw
         .dropna(how="all")
         .set_index("title")
-        .drop("LOCATION")
         .reset_index()
         )
 

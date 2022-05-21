@@ -22,4 +22,6 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run script
+        env: 
+            DW_AUTH_TOKEN: ${{ secrets.DW_AUTH_TOKEN }}
         run: python3 script-gasprices.py
