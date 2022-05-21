@@ -10,6 +10,7 @@ r = requests.get("https://services6.arcgis.com/ubm4tcTYICKBpist/arcgis/rest/serv
 data = geopandas.read_file(json.dumps(r.json()))
 
 print(data)
+print(type(data))
 
 data["stroke"] = data["Advisory"].replace(
     {
@@ -21,6 +22,7 @@ data["stroke"] = data["Advisory"].replace(
 data["fill"] = data["stroke"]
 data["title"] = data["Major_Basin"]
 data["type"] = "area"
+data["icon"] = "area"
 
 
 chart = dwmaps.DatawrapperMaps(chart_id=CHART_ID)

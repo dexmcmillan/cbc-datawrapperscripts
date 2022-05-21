@@ -5,6 +5,7 @@ import datetime
 from datawrapper import Datawrapper
 import sys
 import pandas as pd
+import geopandas
 
 
 class DatawrapperMaps:
@@ -74,7 +75,8 @@ class DatawrapperMaps:
         data['id'] = range(0, len(data))
         data["id"] = data['id'].apply(lambda x: f"m{x}")
         
-        if isinstance(data, pd.DataFrame):
+        if isinstance(data, pd.DataFrame) and not isinstance(data, geopandas.GeoDataFrame):
+            print(f"Pandas df detected.")
             data = self.df_to_geojson(data)
         else:
             data = data.to_crs("EPSG:4326")
@@ -158,6 +160,9 @@ class DatawrapperMaps:
     
     
     
+    
+    
+    
     def deck(self, deck, source, byline="Dexter McMillan"):
         
         dw = Datawrapper(access_token=self.__auth())
@@ -212,6 +217,10 @@ class DatawrapperMaps:
         dw.update_metadata(chart_id=self.CHART_ID, properties=data)
         
         return self
+    
+    
+    
+    
     
     
     
