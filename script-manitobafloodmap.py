@@ -41,13 +41,12 @@ data["scale"] = data["scale"].apply(lambda x: 1.8 if x > 1.8 else x)
 
 data["tooltip"] = "Flood warning at <b>" + data['Station Name'].str.strip() + "</b>.<br><br>Water level measured at <b>" + data['Measured Level (ft)'].astype(int).astype(str) + " ft</b>, <b>" + abs(data["over_capacity"]).astype(str) + " ft</b> " + data['over_capacity_dir'] + " the bankfull capacity."
 
-deck = f"<b>{max_name}</b>, the station most over its bankfull capacity, is measured at <b>{max}</b>ft over capacity.<br><br><details><summary><b>What is bankfull capacity?</b></summary>Bankfull capacity is the level at which the water will rise above the banks of the waterway and potentially flood the surrounding area.</details>"
+deck = f"<b>{max_name}</b>, the station most over its bankfull capacity, is measured at <b>{max}</b> ft over capacity.<br><br><details><summary><b>What is bankfull capacity?</b></summary>Bankfull capacity is the level at which the water will rise above the banks of the waterway and potentially flood the surrounding area.</details>"
 
-chart = dwmaps.DatawrapperMaps(chart_id=CHART_ID)
-dw = (chart
-      .upload(data)
-      .head(f"There are <b>{len(data)} active flood warnings</b> across Manitoba")
-      .deck(deck, "Government of Manitoba")
-      .timestamp()
-      .publish()
-      )
+chart = (dwmaps.Map(chart_id=CHART_ID)
+            .data(data)
+            .head(f"There are <b>{len(data)} active flood warnings</b> across Manitoba")
+            .deck(deck)
+            .footer(source="Government of Manitoba")
+            .publish()
+            )

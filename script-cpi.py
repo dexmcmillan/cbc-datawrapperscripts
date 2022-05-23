@@ -3,7 +3,7 @@ import requests
 from zipfile import ZipFile
 import requests
 from io import BytesIO
-from datawrapper import Datawrapper
+from dwmaps import Datawrapper
 import os
 import json
 

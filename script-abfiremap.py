@@ -33,11 +33,10 @@ percent_under_control = round(len(data[data['FIRE_STATUS'] == 'Under Control'])/
 head = f"There are <b>{len(data)} wildfires</b> burning across Alberta"
 deck = f"As of today, {percent_under_control}% are listed as under control."
 
-chart = dwmaps.DatawrapperMaps(chart_id=CHART_ID)
-dw = (chart
-      .upload(data)
-      .head(head)
-      .deck(deck, "Government of Alberta")
-      .timestamp()
-      .publish()
-      )
+chart = (dwmaps.Map(chart_id=CHART_ID)
+            .data(data)
+            .head(head)
+            .deck(deck)
+            .footer(source="Government of Alberta")
+            .publish()
+            )

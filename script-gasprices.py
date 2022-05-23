@@ -1,6 +1,6 @@
 import pandas as pd
 import datetime as dt
-from datawrapper import Datawrapper
+from dwmaps import Datawrapper
 import os
 import re
 
@@ -81,6 +81,9 @@ series.insert(0, "Today", "")
 series.insert(1, "Predicted Value", "")
 series.insert(2, "Change", "")
 series.insert(3, "Forecast", "")
+
+print(series)
+
 series["Today"] = series[dates[-2]]
 series["Predicted Value"] = series[dates[-1]]
 series["Forecast"] = series["Predicted Value"].astype(float) - series["Today"].astype(float)
