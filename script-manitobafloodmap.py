@@ -1,9 +1,6 @@
 
 
-import requests
-import geopandas
 import pandas as pd
-import json
 import dwmaps
 
 CHART_ID = "j6kHN"
@@ -15,7 +12,7 @@ data = data.rename(columns={"Latitude": "latitude", "Longitude": "longitude"})
 
 data = data[data["Alert"] == "Flood Warning"]
 data["type"] = "point"
-data["icon"] = "droplet"
+data["icon"] = "circle-sm"
 
 data["type"] = "point"
 
@@ -27,8 +24,8 @@ data.loc[data["over_capacity"] > 0, "over_capacity_dir"] = "over"
 data.loc[data["over_capacity"] < 0, "over_capacity_dir"] = "under"
 
 data["markerColor"] = "#29414f"
-data.loc[data["over_capacity_dir"] == "over", "markerColor"] = "#C42127"
-data.loc[data["over_capacity_dir"] == "under", "markerColor"] = "#1F78B4"
+data.loc[data["over_capacity_dir"] == "over", "markerColor"] = "#29414F"
+data.loc[data["over_capacity_dir"] == "under", "markerColor"] = "#C42127"
 
 max = data["over_capacity"].max()
 max_name = data.loc[data["over_capacity"] == max, "Station Name"].values[0]

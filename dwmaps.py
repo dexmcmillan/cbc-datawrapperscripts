@@ -165,7 +165,7 @@ class DatawrapperGraphic:
             "Authorization": f"Bearer {DatawrapperGraphic.auth()}"
         }
         
-        timestamp_string = f"Last updated on {day} at {time}.".replace(" 0", " ")
+        timestamp_string = f"Last updated on {day} at {time}".replace(" 0", " ")
         
         data =  {
             "metadata": {
@@ -339,8 +339,8 @@ class Map(DatawrapperGraphic):
         headers = {"Authorization": f"Bearer {DatawrapperGraphic.auth()}"}
         
         # Create an id column that uses Datawrapper's ID naming convention.
-        data['id'] = range(0, len(data))
-        data["id"] = data['id'].apply(lambda x: f"m{x}")
+        data.loc[:, 'id'] = range(0, len(data))
+        data.loc[:, "id"] = data.loc[:, 'id'].apply(lambda x: f"m{x}")
         
         # Check if the data input is a pandas dataframe or a geopandas dataframe. if it's pandas, call df_to_geojson(). If not, convert crs and convert geopandas to json.
         # The outcome of this if/else is a list of json objects that can be iterated through.

@@ -22,11 +22,11 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Update BC flood warning chart
-        env: 
-            DW_AUTH_TOKEN: ${{ secrets.DW_AUTH_TOKEN }}
-        run: |
-          python3 script-bcfloodmap.py
+      # - name: Update BC flood warning chart
+      #   env: 
+      #       DW_AUTH_TOKEN: ${{ secrets.DW_AUTH_TOKEN }}
+      #   run: |
+      #     python3 script-bcfloodmap.py
 
       - name: Update BC fire map
         env: 

@@ -31,13 +31,12 @@ data["scale"] = data["scale"].apply(lambda x: 2.2 if x > 2.2 else x)
 
 # Build tooltip from description and status.
 data["tooltip"] = "<big>Fire at " + data['GEOGRAPHIC_DESCRIPTION'] + "</big><br><b>Status</b>: " + data['FIRE_STATUS'] + "</span><br><b>Started by</b>: " + data["FIRE_CAUSE"] + "<br><b>Estimated size</b>: " + data["CURRENT_SIZE"].astype(str) + " hectares"
+data = data.sort_values("scale")
 
 map = (dwmaps.Map(chart_id=CHART_ID)
             .data(data)
             .head(f"There are <b>{len(data)} wildfires</b> burning across B.C.")
-            .deck(f"As of today, {round(len(data[data['FIRE_STATUS'] == 'Under Control'])/len(data)*100, 1)}% are listed as under control.")
+            .deck(f"As of today, {round(len(data[data['FIRE_STATUS'] == 'Under Control'])/len(data)*100, 1)}% are listed as under control. Size of markers approximately represents the size of the fire.")
             .footer(source="B.C. Wildfire Centre")
             .publish()
             )
-
-print(map.metadata)

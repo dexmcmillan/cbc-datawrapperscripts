@@ -19,7 +19,7 @@ data["markerColor"] = "#C42127"
 roadmap = (dwmaps.Map(CHART_ID)
             .data(data)
             .head(f"Northern Ontario road closures due to flooding")
-            .deck(f"Tap or hover over a red triangle to read more about the closure.")
+            .deck(f"There are currently <b>{len(data)} road closures</b>, according to Ontario 511. Tap or hover over a red triangle to read more about the closure.")
             .footer(source="Ontario 511")
             .publish()
             )

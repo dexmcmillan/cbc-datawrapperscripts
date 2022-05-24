@@ -3,9 +3,8 @@ import requests
 from zipfile import ZipFile
 import requests
 from io import BytesIO
-from dwmaps import Datawrapper
+from datawrapper import Datawrapper
 import os
-import json
 
 
 r = requests.get("https://www150.statcan.gc.ca/n1/en/tbl/csv/18100004-eng.zip?st=G8sPC-61")
@@ -13,7 +12,7 @@ files = ZipFile(BytesIO(r.content))
 file = files.open(files.namelist()[0])
 raw = pd.read_csv(file, encoding="utf-8")
 
-provinces = pd.read_csv("provinces.csv")
+provinces = pd.read_csv("assets/provinces.csv")
 
 gas = raw.loc[(raw["Products and product groups"] == "Gasoline") & (raw["GEO"].isin(provinces["Province"].to_list())) & (raw["REF_DATE"].gt("1980-01-01"))].pivot(values="VALUE", index="REF_DATE", columns="GEO")
 

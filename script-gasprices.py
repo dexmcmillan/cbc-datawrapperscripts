@@ -1,6 +1,6 @@
 import pandas as pd
 import datetime as dt
-from dwmaps import Datawrapper
+from datawrapper import Datawrapper
 import os
 import re
 

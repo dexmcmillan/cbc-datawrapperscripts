@@ -25,6 +25,7 @@ data["scale"] = ((data["AREA_ESTIMATE"] - avg) / (std)) + 1
 data["scale"] = data["scale"].apply(lambda x: 2.2 if x > 2.2 else x)
 
 data["tooltip"] = "<big>" + data['RESP_AREA'] + "</big><br><b>Status</b>: " + data['FIRE_STATUS'] + "</span>" + "<br><b>Cause</b>: " + data["GENERAL_CAUSE"] 
+data = data.sort_values("scale")
 
 print(data)
 
