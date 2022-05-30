@@ -67,7 +67,7 @@ path3.loc[path3["DVLBL"] == "D", "storm_type"] = "Depression"
 path3.loc[path3["DVLBL"] == "H", "storm_type"] = "Hurricane"
 path3.loc[path3["DVLBL"] == "S", "storm_type"] = "Storm"
 
-path3["tooltip"] = "On " + path3['DATELBL'].dt.strftime("%b %e") + " at " + path3['DATELBL'].dt.strftime("%I:%M %p").str.replace("$0", "", regex=True) + " CDT, the storm is projected to be classified as a " + path3["storm_type"].str.lower() + "."
+path3["tooltip"] = "On " + path3['DATELBL'].dt.strftime("%b %e") + " at " + path3['DATELBL'].dt.strftime("%I:%M %p").str.replace("$0", "", regex=True) + " EST, the storm is projected to be classified as a " + path3["storm_type"].str.lower() + "."
 path3["tooltip"] = path3["tooltip"].str.replace(" 0", " ")
 path3["fill"] = "#C42127"
 path3["markerSymbol"] = path3["DVLBL"]

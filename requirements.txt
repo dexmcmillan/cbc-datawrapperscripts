@@ -2,6 +2,3 @@ pandas
 requests
 datawrapper
 geopandas
-zipfile
-io
-urllib.request
