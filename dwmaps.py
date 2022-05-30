@@ -389,6 +389,9 @@ class Map(DatawrapperGraphic):
                     try: new_feature["tooltip"]["text"] = feature["properties"]["tooltip"]
                     except KeyError: pass
                     
+                    try: new_feature["markerSymbol"] = feature["properties"]["markerSymbol"]
+                    except KeyError: pass
+                    
                     try: new_feature["coordinates"] = feature["geometry"]["coordinates"]
                     except TypeError: new_feature["coordinates"] = [float(feature["properties"]["longitude"]), float(feature["properties"]["latitude"])]
                     
