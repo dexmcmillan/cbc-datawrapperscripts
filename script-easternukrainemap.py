@@ -122,15 +122,17 @@ source_list_clean = set(source_list_clean)
 source_string = ", ".join(source_list_clean) + ", " + "Institute for the Study of War and AEI's Critical Threats Project"
 
 # We only want these cities to show up on the Eastern Ukraine map.
-eastern_cities = ["Kyiv", "Kharkiv", "Izyum", "Lysychansk", "Mariupol", "Dnipro", "Mykolaiv", "Kherson", "Odesa"]
+eastern_cities = ["Kyiv", "Kharkiv", "Izyum", "Mariupol", "Severodonetsk", "Mykolaiv", "Kherson", "Odesa", "Lyman"]
 
 # Bring together points and shapes for import into Datawrapper map.
 data = pd.concat([areas, points[points["title"].isin(eastern_cities)]])
+
+print(data)
 
 eastern_ukraine = (dwmaps.Map(chart_id=EASTERN_UKRAINE_CHART_ID)
                     .data(data)
                     .head(f"Russia launches offensive in Eastern Ukraine")
                     .deck("Tap or hover over a point to read more about fighting in that area.")
-                    .footer(source=source_string, byline="Wendy Martinez, Dexter McMillan")
+                    .footer(note=f"Source: {source_string}.", byline="Wendy Martinez, Dexter McMillan")
                     .publish()
                 )

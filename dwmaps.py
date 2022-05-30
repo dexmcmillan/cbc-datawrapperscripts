@@ -40,7 +40,7 @@ class DatawrapperGraphic:
             
             print(f"No chart specified. Copying chart with ID: {copy_id}...")
             
-            response = requests.post(f"https://api.datawrapper.de/v3/charts/{id}/copy", headers=headers)
+            response = requests.post(f"https://api.datawrapper.de/v3/charts/{copy_id}/copy", headers=headers)
             chart_id = response.json()["publicId"]
             
             print(f"New chart ({chart_id}) created as a copy of {copy_id}.")
@@ -59,6 +59,12 @@ class DatawrapperGraphic:
         response = requests.get(f"https://api.datawrapper.de/v3/charts/{DatawrapperGraphic.CHART_ID}", headers=headers)
         self.metadata = response.json()
 
+    
+    
+    
+    
+    
+    
     
     
     
@@ -147,7 +153,7 @@ class DatawrapperGraphic:
     
     ## Adds a timestamp to the "notes" section of your chart. Also allows for an additional note string that will be added before the timestamp.
     
-    def footer(self, source: str, byline:str = "Dexter McMillan", note: str = "", timestamp: bool = True):
+    def footer(self, source: str = None, byline:str = "Dexter McMillan", note: str = "", timestamp: bool = True):
         
         os_name = os.name
         
@@ -412,7 +418,7 @@ class Map(DatawrapperGraphic):
         payload = json.dumps(payload)
 
         r = requests.put(f"https://api.datawrapper.de/v3/charts/{DatawrapperGraphic.CHART_ID}/data", headers=headers, data=payload)
-
+        print(r)
         if r.ok:
             print(f"SUCCESS: Data added to chart.")
         else:

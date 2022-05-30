@@ -1,0 +1,226 @@
+[
+    {
+        "id": "m100",
+        "wikidata": "Q34110",
+        "type": "point",
+        "title": "Oaxaca",
+        "icon": {
+            "id": "city",
+            "path": "M500 850c-276 0-500-224-500-500 0-276 224-500 500-500 276 0 500 224 500 500 0 276-224 500-500 500z m0-89c228 0 411-183 411-411 0-228-183-411-411-411-228 0-411 183-411 411 0 228 183 411 411 411z m302-411a302 302 0 0 0-302-302 302 302 0 0 0-302 302 302 302 0 0 0 302 302 302 302 0 0 0 302-302z",
+            "horiz-adv-x": 1000,
+            "height": 700,
+            "width": 1000
+        },
+        "scale": 1,
+        "textPosition": null,
+        "markerColor": "#333333",
+        "markerSymbol": "",
+        "markerTextColor": "#333333",
+        "anchor": "top-center",
+        "offsetY": 0,
+        "offsetX": 0,
+        "labelStyle": "plain",
+        "text": {
+            "bold": false,
+            "italic": false,
+            "uppercase": false,
+            "space": false,
+            "color": "#333333",
+            "fontSize": 14,
+            "halo": "#f2f3f0"
+        },
+        "class": "",
+        "rotate": 0,
+        "visible": true,
+        "locked": false,
+        "preset": "-",
+        "visibility": {
+            "mobile": true,
+            "desktop": true
+        },
+        "tooltip": {
+            "enabled": false,
+            "text": ""
+        },
+        "connectorLine": {
+            "enabled": false,
+            "arrowHead": "lines",
+            "type": "curveRight",
+            "targetPadding": 3,
+            "stroke": 1,
+            "lineLength": 0
+        },
+        "coordinates": [
+            -96.5,
+            17
+        ],
+        "orgLatLng": [
+            -96.5,
+            17
+        ]
+    },
+    {
+        "id": "m101",
+        "wikidata": "Q1489",
+        "type": "point",
+        "title": "Mexico City",
+        "icon": {
+            "id": "city",
+            "path": "M500 850c-276 0-500-224-500-500 0-276 224-500 500-500 276 0 500 224 500 500 0 276-224 500-500 500z m0-89c228 0 411-183 411-411 0-228-183-411-411-411-228 0-411 183-411 411 0 228 183 411 411 411z m302-411a302 302 0 0 0-302-302 302 302 0 0 0-302 302 302 302 0 0 0 302 302 302 302 0 0 0 302-302z",
+            "horiz-adv-x": 1000,
+            "height": 700,
+            "width": 1000
+        },
+        "scale": 1,
+        "textPosition": null,
+        "markerColor": "#333333",
+        "markerSymbol": "",
+        "markerTextColor": "#333333",
+        "anchor": "top-center",
+        "offsetY": 0,
+        "offsetX": 0,
+        "labelStyle": "plain",
+        "text": {
+            "bold": false,
+            "italic": false,
+            "uppercase": false,
+            "space": false,
+            "color": "#333333",
+            "fontSize": 14,
+            "halo": "#f2f3f0"
+        },
+        "class": "",
+        "rotate": 0,
+        "visible": true,
+        "locked": false,
+        "preset": "-",
+        "visibility": {
+            "mobile": true,
+            "desktop": true
+        },
+        "tooltip": {
+            "enabled": false,
+            "text": ""
+        },
+        "connectorLine": {
+            "enabled": false,
+            "arrowHead": "lines",
+            "type": "curveRight",
+            "targetPadding": 3,
+            "stroke": 1,
+            "lineLength": 0
+        },
+        "coordinates": [
+            -99.1331785,
+            19.4326296
+        ],
+        "orgLatLng": [
+            -99.1331785,
+            19.4326296
+        ]
+    },{
+        "id": "m102",
+        "wikidata": null,
+        "type": "point",
+        "title": "Gulf of Mexico",
+        "icon": {
+            "id": "none",
+            "path": "M0,0"
+        },
+        "scale": 1,
+        "textPosition": null,
+        "markerColor": "#333333",
+        "markerSymbol": "",
+        "markerTextColor": "#333333",
+        "anchor": "middle-center",
+        "offsetY": -2,
+        "offsetX": 2,
+        "labelStyle": "plain",
+        "text": {
+            "bold": false,
+            "italic": false,
+            "uppercase": false,
+            "space": true,
+            "color": "#adaaa8",
+            "fontSize": 15,
+            "halo": "#f2f3f0"
+        },
+        "class": "",
+        "rotate": 0,
+        "visible": true,
+        "locked": false,
+        "preset": "location",
+        "visibility": {
+            "mobile": true,
+            "desktop": true
+        },
+        "tooltip": {
+            "enabled": false,
+            "text": ""
+        },
+        "connectorLine": {
+            "enabled": false,
+            "arrowHead": "lines",
+            "type": "curveRight",
+            "targetPadding": 3,
+            "stroke": 1,
+            "lineLength": 0
+        },
+        "coordinates": [
+            -94.20475278641675,
+            19.88602930358732
+        ]
+    },
+    {
+        "id": "m103",
+        "wikidata": null,
+        "type": "point",
+        "title": "Pacific Ocean",
+        "icon": {
+            "id": "none",
+            "path": "M0,0"
+        },
+        "scale": 1,
+        "textPosition": null,
+        "markerColor": "#333333",
+        "markerSymbol": "",
+        "markerTextColor": "#333333",
+        "anchor": "middle-center",
+        "offsetY": -2,
+        "offsetX": 2,
+        "labelStyle": "plain",
+        "text": {
+            "bold": false,
+            "italic": false,
+            "uppercase": false,
+            "space": true,
+            "color": "#adaaa8",
+            "fontSize": 15,
+            "halo": "#f2f3f0"
+        },
+        "class": "",
+        "rotate": 0,
+        "visible": true,
+        "locked": false,
+        "preset": "location",
+        "visibility": {
+            "mobile": true,
+            "desktop": true
+        },
+        "tooltip": {
+            "enabled": false,
+            "text": ""
+        },
+        "connectorLine": {
+            "enabled": false,
+            "arrowHead": "lines",
+            "type": "curveRight",
+            "targetPadding": 3,
+            "stroke": 1,
+            "lineLength": 0
+        },
+        "coordinates": [
+            -97.111052340458,
+            14.30438018923276
+        ]
+    }]

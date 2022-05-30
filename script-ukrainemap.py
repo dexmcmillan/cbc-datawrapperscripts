@@ -33,6 +33,9 @@ data["longitude"] = data["coordinates"].apply(lambda x: x.split(", ")[0].replace
 data["latitude"] = data["coordinates"].apply(lambda x: x.split(", ")[1].replace("]", ""))
 data = data.drop(columns=["coordinates"])
 
+print(data)
+data.to_clipboard()
+
 source_list = set(data["source"].to_list())
 source_list_clean = []
 for entry in source_list:
@@ -51,6 +54,6 @@ ukraine = (dwmaps.Map(chart_id=UKRAINE_CHART_ID)
     .data(data)
     .head(f"Russian military invasion in Ukraine")
     .deck("")
-    .footer(source=source_string, byline="Wendy Martinez, Dexter McMillan")
+    .footer(note=f"Source: {source_string}.", byline="Wendy Martinez, Dexter McMillan")
     .publish()
 )
