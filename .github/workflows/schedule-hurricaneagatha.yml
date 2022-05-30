@@ -1,7 +1,7 @@
-name: Update Ukraine battle map
+name: Update Hurricane Agatha tracker
 on:
   schedule:
-    - cron: 59 19/1 * * 1-5
+    - cron: 0 0/1 * * *
 
 jobs:
   pull_data:
@@ -24,4 +24,4 @@ jobs:
       - name: Map update and publish
         env: 
             DW_AUTH_TOKEN: ${{ secrets.DW_AUTH_TOKEN }}
-        run: python3 ukrainemap/ukrainemap.py
+        run: python3 script-hurricane-agatha.py
