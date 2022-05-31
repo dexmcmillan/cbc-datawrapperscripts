@@ -10,7 +10,7 @@ from urllib.request import urlopen
 
                 
 
-CHART_ID = "83uUC"
+CHART_ID = "nSHo0"
 
 data = pd.read_xml("https://www.nhc.noaa.gov/nhc_ep1.xml", xpath="/rss/channel/item[1]/nhc:Cyclone", namespaces={"nhc":"https://www.nhc.noaa.gov"})
 data["latitude"] = pd.Series(data.at[0, "center"].split(",")[0].strip()).astype(float)

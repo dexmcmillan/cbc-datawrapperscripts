@@ -2,3 +2,4 @@ pandas
 requests
 datawrapper
 geopandas
+lmxl
