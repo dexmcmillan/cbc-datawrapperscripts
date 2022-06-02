@@ -40,10 +40,4 @@ jobs:
         run: |
           python3 script-abfiremap.py
 
-      - name: Update Man. flood map
-        env: 
-            DW_AUTH_TOKEN: ${{ secrets.DW_AUTH_TOKEN }}
-        run: |
-          python3 script-manitobafloodmap.py
-
       
