@@ -1,5 +1,5 @@
 import pandas as pd
-import dwmaps
+from datawrappergraphics.Map import Map
 
 data = pd.read_json("https://drivebc.ca/data/events.json")
 data = data[[0,1,2,3,4,9]]

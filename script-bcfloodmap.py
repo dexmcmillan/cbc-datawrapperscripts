@@ -1,7 +1,7 @@
 import requests
 import geopandas
 import json
-import dwmaps
+from datawrappergraphics.Map import Map
 from fiona import errors
 
 # Live chart ID: HufI4

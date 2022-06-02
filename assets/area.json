@@ -7,6 +7,7 @@
     "stroke": true,
     "exactShape": false,
     "highlight": false,
+    "markerColor": "#C42127",
     "properties": {
         "fill": "#c42127",
         "fill-opacity": 0.3,

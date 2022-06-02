@@ -2,8 +2,10 @@ import requests
 import geopandas
 import pandas as pd
 import json
-import dwmaps
+from datawrappergraphics.Map import Map
 
+# Test chart: "HqkeQ"
+# Live chart: "L45df"
 CHART_ID = "L45df"
 
 r = requests.get("https://services.arcgis.com/Eb8P5h4CJk8utIBz/ArcGIS/rest/services/Active_Wildfire_Locations/FeatureServer/0/query?where=1%3D1&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=standard&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=*&returnGeometry=true&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&defaultSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pjson&token=")
@@ -34,7 +36,7 @@ percent_under_control = round(len(data[data['FIRE_STATUS'] == 'Under Control'])/
 head = f"There are <b>{len(data)} wildfires</b> burning across Alberta"
 deck = f"As of today, {percent_under_control}% are listed as under control."
 
-chart = (dwmaps.Map(chart_id=CHART_ID)
+chart = (Map(chart_id=CHART_ID)
             .data(data)
             .head(head)
             .deck(deck)

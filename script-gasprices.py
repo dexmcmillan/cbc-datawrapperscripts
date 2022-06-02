@@ -11,6 +11,8 @@ except: DW_AUTH_TOKEN = os.environ['DW_AUTH_TOKEN']
 
 dw = Datawrapper(access_token=DW_AUTH_TOKEN)
 
+# Test: gloZT
+# Live: 7skMM
 CHART_ID = "7skMM"
 
 today = dt.datetime.today()
@@ -30,12 +32,14 @@ for date in dates:
         data["Prediction?"] = True
     else:
         data["Prediction?"] = False
+        
     dfs.append(data)
 
 
 raw = pd.concat(dfs)
 
 raw["City"] = raw["City"].str.replace(":", "")
+raw = raw[~raw["City"].str.contains("adsbygoogle")]
 
 data = raw.melt(value_vars=["Regular", "Premium", "Diesel"], id_vars=["date", "City", "Prediction?"])
 
@@ -47,7 +51,8 @@ def result_func(x):
         return "0"
 
 
-data["Price"] = data["value"].astype(str).apply(lambda x: re.search("[0-9]{3}\.[0-9]{1}", x).group(0))
+try: data["Price"] = data["value"].astype(str).apply(lambda x: re.search("[0-9]{3}\.[0-9]{1}", x).group(0))
+except: pass
 data.loc[data["value"].str.contains(" "), "Change"] = data.loc[data["value"].str.contains(" "), "value"].astype(str).apply(lambda x: result_func(x))
 
 data = data.drop(columns=["value"])

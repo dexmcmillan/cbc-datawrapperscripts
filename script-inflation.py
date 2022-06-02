@@ -1,6 +1,6 @@
 import pandas as pd
 import os
-import dwmaps
+from datawrappergraphics.Chart import Chart
 
 CHART_ID = "9p0ld"
 
@@ -26,7 +26,7 @@ filtered["REF_DATE"] = pd.to_datetime(filtered["REF_DATE"])
 
 filtered = filtered.loc[:, ["REF_DATE", "change"]].tail(24).set_index("REF_DATE")
 
-chart = dwmaps.Chart(chart_id=CHART_ID)
+chart = Chart(chart_id=CHART_ID)
 print(chart.metadata)
 
 # chart.data(filtered).publish()

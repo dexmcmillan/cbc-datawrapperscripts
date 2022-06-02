@@ -1,7 +1,7 @@
 
 
 import pandas as pd
-import dwmaps
+from datawrappergraphics.Map import Map
 
 CHART_ID = "j6kHN"
 
@@ -40,7 +40,7 @@ data["tooltip"] = "Flood warning at <b>" + data['Station Name'].str.strip() + "<
 
 deck = f"<b>{max_name}</b>, the station most over its bankfull capacity, is measured at <b>{max}</b> ft over capacity.<br><br><details><summary><b>What is bankfull capacity?</b></summary>Bankfull capacity is the level at which the water will rise above the banks of the waterway and potentially flood the surrounding area.</details>"
 
-chart = (dwmaps.Map(chart_id=CHART_ID)
+chart = (Map(chart_id=CHART_ID)
             .data(data)
             .head(f"There are <b>{len(data)} active flood warnings</b> across Manitoba")
             .deck(deck)

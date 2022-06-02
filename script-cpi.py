@@ -12,7 +12,7 @@ files = ZipFile(BytesIO(r.content))
 file = files.open(files.namelist()[0])
 raw = pd.read_csv(file, encoding="utf-8")
 
-provinces = pd.read_csv("assets/provinces.csv")
+provinces = pd.read_csv("assets/data/provinces.csv")
 
 gas = raw.loc[(raw["Products and product groups"] == "Gasoline") & (raw["GEO"].isin(provinces["Province"].to_list())) & (raw["REF_DATE"].gt("1980-01-01"))].pivot(values="VALUE", index="REF_DATE", columns="GEO")
 

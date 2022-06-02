@@ -1,5 +1,5 @@
-pandas
-requests
-datawrapper
-geopandas
-lmxl
+# pandas
+# requests
+# datawrapper
+# geopandas
+# https://github.com/dexmcmillan/datawrappergraphics/blob/main/dist/datawrappergraphics-0.2.11-py3-none-any.whl?raw=true

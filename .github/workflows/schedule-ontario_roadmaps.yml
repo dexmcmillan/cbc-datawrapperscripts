@@ -4,7 +4,7 @@ on:
     - cron: 0 0/1 * * *
 
 jobs:
-  pull_data:
+  update_map:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout code

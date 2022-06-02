@@ -4,7 +4,7 @@ on:
     - cron: 0 13 16-22 * *
 
 jobs:
-  pull_data:
+  update_inflation_graphic:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout code
