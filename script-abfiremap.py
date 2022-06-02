@@ -1,6 +1,5 @@
 import requests
 import geopandas
-import pandas as pd
 import json
 from datawrappergraphics.Map import Map
 
