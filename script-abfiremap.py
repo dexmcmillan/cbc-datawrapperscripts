@@ -15,7 +15,12 @@ data = geopandas.read_file(json.dumps(r.json()))
 data["opacity"] = 0.5
 data = data.drop(columns="ID")
 
-data["markerColor"] = data["FIRE_STATUS"].replace({"Under Control": "#436170", "New": "#F8C325", "Out of Control": "#c42127", "Being Held": "#000000"})
+data["markerColor"] = data["FIRE_STATUS"].replace({"Under Control": "#436170",
+                                                   "New": "#F8C325",
+                                                   "Out of Control": "#c42127",
+                                                   "Being Held": "#000000",
+                                                   "Assistance Started": "#1F78B4"
+                                                   })
 
 data["type"] = "point"
 data["icon"] = "fire"
