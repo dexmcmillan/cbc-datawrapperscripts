@@ -44,3 +44,5 @@ chart = (datawrappergraphics.Map(chart_id=CHART_ID)
             .footer(source="Government of Alberta")
             .publish()
             )
+
+print(chart.metadata)

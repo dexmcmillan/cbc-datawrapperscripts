@@ -1,3 +1,3 @@
 import datawrappergraphics
 
-datawrappergraphics.Map("L45df").get_markers(save=True)
+datawrappergraphics.Map("nSHo0").get_markers(save=True)
