@@ -1,1 +1,4 @@
-https://github.com/dexmcmillan/datawrappergraphics/blob/main/dist/datawrappergraphics-0.2.36-py3-none-any.whl?raw=true
+pandas
+requests
+geopandas
+datawrapper
