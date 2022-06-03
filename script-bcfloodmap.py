@@ -1,7 +1,7 @@
 import requests
 import geopandas
 import json
-from datawrappergraphics.Map import Map
+import datawrappergraphics
 from fiona import errors
 
 # Live chart ID: HufI4
@@ -37,7 +37,7 @@ data["type"] = "area"
 data["icon"] = "area"
 
 
-chart = (dwmaps.Map(chart_id=CHART_ID)
+chart = (datawrappergraphics.Map(chart_id=CHART_ID)
         .data(data)
         .head(f"There {'are' if len(data) > 1 else 'is'} <b>{len(data)} flood warning{'s' if len(data) > 1 else ''}</b> across B.C.")
         .footer()

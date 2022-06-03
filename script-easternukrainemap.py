@@ -1,6 +1,6 @@
 import pandas as pd
 import os
-from datawrappergraphics.Map import Map
+import datawrappergraphics
 import geopandas
 import glob
 import re
@@ -136,7 +136,7 @@ data["visible"] = True
 
 print(data)
 
-eastern_ukraine = (Map(chart_id=EASTERN_UKRAINE_CHART_ID)
+eastern_ukraine = (datawrappergraphics.Map(chart_id=EASTERN_UKRAINE_CHART_ID)
                     .data(data)
                     .head(f"Russia launches offensive in Eastern Ukraine")
                     .deck("Tap or hover over a point to read more about fighting in that area.")

@@ -1,5 +1,5 @@
 import pandas as pd
-from datawrappergraphics.Map import Map
+import datawrappergraphics
 
 CHART_ID = "Zuvdy"
 
@@ -16,7 +16,7 @@ data["scale"] = 1.2
 data["type"] = "point"
 data["markerColor"] = "#C42127"
 
-roadmap = (Map(CHART_ID)
+roadmap = (datawrappergraphics.Map(CHART_ID)
             .data(data)
             .head(f"Northern Ontario road closures due to flooding")
             .deck(f"There are currently <b>{len(data)} road closures</b>, according to Ontario 511. Tap or hover over a red triangle to read more about the closure.")

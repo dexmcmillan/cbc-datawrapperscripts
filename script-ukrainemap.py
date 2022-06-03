@@ -1,5 +1,5 @@
 import pandas as pd
-from datawrappergraphics.Map import Map
+import datawrappergraphics
 
 ## The ID of the Ukraine map Datawrapper. (LIVE CHART ID: wQIM1. TEST CHART ID: sM21M)
 UKRAINE_CHART_ID = "sM21M"
@@ -46,7 +46,7 @@ source_list_clean = [x for x in source_list_clean if x]
 source_list_clean = set(source_list_clean)
 source_string = ", ".join(source_list_clean)
 
-ukraine = (Map(chart_id=UKRAINE_CHART_ID)
+ukraine = (datawrappergraphics.Map(chart_id=UKRAINE_CHART_ID)
     .data(data)
     .head(f"Russian military invasion in Ukraine")
     .deck("")

@@ -1,5 +1,5 @@
 import pandas as pd
-from datawrappergraphics.Map import Map
+import datawrappergraphics
 
 chart_id = "wmdZl"
 
@@ -13,4 +13,4 @@ data["tooltip"] = "<b>" + data["location1"] + " - " + data["location2"] + "</b><
 
 incidents = data[data["type1"] == "INCIDENT"]
 
-map = Map(chart_id).data(incidents).head("A test map of BC provincial traffic conditions")
+map = datawrappergraphics.Map(chart_id).data(incidents).head("A test map of BC provincial traffic conditions")

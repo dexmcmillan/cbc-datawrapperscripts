@@ -1,3 +1,3 @@
-from datawrappergraphics.Map import *
+import datawrappergraphics
 
-Map("L45df").get_markers(save=True)
+datawrappergraphics.Map("L45df").get_markers(save=True)

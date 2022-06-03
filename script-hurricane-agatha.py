@@ -1,9 +1,9 @@
-from datawrappergraphics.StormMap import StormMap
+import datawrappergraphics
 
 CHART_ID = "nSHo0"
 
 
-hurricane_map = (StormMap(chart_id=CHART_ID, storm_id="ep012022")
+hurricane_map = (datawrappergraphics.StormMap(chart_id=CHART_ID, storm_id="ep012022")
                  .process_data()
                  )
 
