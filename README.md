@@ -2,7 +2,7 @@
 
 These scripts are used to automatically update several charts for CBC News, and rely on [a module called datawrappergraphics](https://github.com/dexmcmillan/datawrappergraphics) that is a Pythonic representation of each graphic.
 
-[![Update fire and flood maps](https://github.com/dexmcmillan/cbc-datawrapperscripts/actions/workflows/schedule-floodmaps.yml/badge.svg?branch=main)](https://github.com/dexmcmillan/cbc-datawrapperscripts/actions/workflows/schedule-floodmaps.yml)
+![Maintainer](https://img.shields.io/badge/maintainer-dexmcmillan-blue)
 
 ## Maps using this module
 
@@ -26,7 +26,7 @@ Created as a backup to a CBC Newslabs presentation. These graphics have moved to
 Retired  
 [A map](https://datawrapper.dwcdn.net/E95GT/4/) showing points from Ottawa's traffic API to show the road closures due to the Rolling Thunder convoy. Began visualizing data as of April 29, 2022
 
-### Climate maps
+### Climate maps [![Update fire and flood maps](https://github.com/dexmcmillan/cbc-datawrapperscripts/actions/workflows/schedule-floodmaps.yml/badge.svg?branch=main)](https://github.com/dexmcmillan/cbc-datawrapperscripts/actions/workflows/schedule-floodmaps.yml)
 * [Manitoba flooding map](https://www.datawrapper.de/_/j6kHN/)
 * [Alberta wildfire map](https://www.datawrapper.de/_/L45df/)
 * [BC wildfire map](https://www.datawrapper.de/_/Os1m6/)
