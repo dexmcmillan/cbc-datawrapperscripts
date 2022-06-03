@@ -1,5 +1,5 @@
 import pandas as pd
-from datawrappergraphics.Map import *
+import datawrappergraphics
 import requests
 
 
