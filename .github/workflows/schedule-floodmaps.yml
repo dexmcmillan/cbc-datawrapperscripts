@@ -46,5 +46,4 @@ jobs:
       #       DW_AUTH_TOKEN: ${{ secrets.DW_AUTH_TOKEN }}
       #   run: |
       #     python3 script-manitobafloodmap.py
-
       
