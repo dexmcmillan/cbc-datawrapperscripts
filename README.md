@@ -3,7 +3,6 @@
 These scripts are used to automatically update several charts for CBC News, and rely on [a module called datawrappergraphics](https://github.com/dexmcmillan/datawrappergraphics) that is a Pythonic representation of each graphic.
 
 ![Maintainer](https://img.shields.io/badge/maintainer-dexmcmillan-blue)
-[![Latest release](https://badgen.net/github/release/Naereen/Strapdown.js)](https://github.com/Naereen/Strapdown.js/releases)
 
 ## Maps using this module
 
