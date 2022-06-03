@@ -1,12 +1,12 @@
 import pandas as pd
-import dwmaps
+import datawrappergraphics
 import requests
 
 
 states = pd.read_html("https://www23.statcan.gc.ca/imdb/p3VD.pl?Function=getVD&TVD=53971")[0]
 charts = pd.read_csv("graphics.csv")
 
-raw = pd.read_csv("data-guns.csv")
+raw = pd.read_csv("assets/data/data-guns.csv")
 raw = raw.set_index("STATE").join(states.set_index("Alpha code")).reset_index()
 
 data = raw.copy()
@@ -49,7 +49,7 @@ data.to_clipboard()
 
 # requests.patch("https://api.datawrapper.de/v3/charts", json=payload, headers=headers)
 
-# records.to_csv("graphics.csv")
+# records.to_csv("assets/data/graphics.csv")
 
 
 

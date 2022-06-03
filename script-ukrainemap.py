@@ -1,8 +1,8 @@
 import pandas as pd
-import dwmaps
+import datawrappergraphics
 
 ## The ID of the Ukraine map Datawrapper. (LIVE CHART ID: wQIM1. TEST CHART ID: sM21M)
-UKRAINE_CHART_ID = "wQIM1"
+UKRAINE_CHART_ID = "sM21M"
 
 ## Import sheet data.
 raw = (pd
@@ -26,15 +26,11 @@ data["anchor"] = data["anchor"].str.lower()
 data["tooltip"] = data["tooltip"].str.strip()
 data["tooltip"] = '<b>' + data["title"] + '</b><br>' + data["tooltip"] + ' <i>(Source: ' + data["source"].fillna("").str.strip().str.replace("\"", "'") + ')</i>'
 data["markerColor"] = "#c42127"
-data["type"] = "point"
 data["icon"] = 'circle-sm'
 data["scale"] = 1.2
 data["longitude"] = data["coordinates"].apply(lambda x: x.split(", ")[0].replace("[", ""))
 data["latitude"] = data["coordinates"].apply(lambda x: x.split(", ")[1].replace("]", ""))
 data = data.drop(columns=["coordinates"])
-
-print(data)
-data.to_clipboard()
 
 source_list = set(data["source"].to_list())
 source_list_clean = []
@@ -50,7 +46,7 @@ source_list_clean = [x for x in source_list_clean if x]
 source_list_clean = set(source_list_clean)
 source_string = ", ".join(source_list_clean)
 
-ukraine = (dwmaps.Map(chart_id=UKRAINE_CHART_ID)
+ukraine = (datawrappergraphics.Map(chart_id=UKRAINE_CHART_ID)
     .data(data)
     .head(f"Russian military invasion in Ukraine")
     .deck("")

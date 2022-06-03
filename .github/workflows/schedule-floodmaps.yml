@@ -1,15 +1,16 @@
 name: Update fire and flood maps
 on:
   schedule:
-    - cron: 0 0/4 * * *
+    - cron: 0/15 * * * *
 
 jobs:
   update_charts:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
+          ref: migration-to-hosted-python-module
           persist-credentials: false
           fetch-depth: 0
 
@@ -40,4 +41,9 @@ jobs:
         run: |
           python3 script-abfiremap.py
 
+      # - name: Update Man. flood map
+      #   env: 
+      #       DW_AUTH_TOKEN: ${{ secrets.DW_AUTH_TOKEN }}
+      #   run: |
+      #     python3 script-manitobafloodmap.py
       

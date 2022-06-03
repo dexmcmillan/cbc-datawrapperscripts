@@ -1,19 +1,8 @@
 # CBC Datawrapper scripts
 
-These scripts are used to automatically update several charts for CBC News, and rely on a module called dwmaps that is a Pythonic representation of each graphic.
+These scripts are used to automatically update several charts for CBC News, and rely on [a module called datawrappergraphics](https://github.com/dexmcmillan/datawrappergraphics) that is a Pythonic representation of each graphic.
 
 ## Maps using this module
-
-### COVID-19 charts
-Retired: April 2022  
-These charts pull in data from the Public Health Agency of Canada and update live charts for most provinces and regions in Canada every Monday-Friday at 9:30 AM EST.
-* [Canada](https://www.datawrapper.de/_/9H3Bn/)
-* [Ontario](https://www.datawrapper.de/_/DNm2f/)
-* [BC](https://www.datawrapper.de/_/34VzE/)
-* [Saskatchewan](https://www.datawrapper.de/_/pmp9T/)
-* [Alberta](https://www.datawrapper.de/_/BPmg4/)
-* [Manitoba](https://www.datawrapper.de/_/3rONz/)
-* [New Brunswick](https://www.datawrapper.de/_/PIVxK/)
 
 ### Ukraine battle map
 Active  
@@ -28,7 +17,7 @@ Active
 An [automatically updating map](https://www.datawrapper.de/_/RHK8m/) that uses Ontario 511 data to plot road closures onto a CBC-branded map. A script keeps this updated every hour.
 
 ### Ontario polling graphics
-Active  
+Active
 Created as a backup to a CBC Newslabs presentation. These graphics have moved to [a new repository](https://github.com/dexmcmillan/cbc-polling-graphics).
 
 ### Ottawa road map

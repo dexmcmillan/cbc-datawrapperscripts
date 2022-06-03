@@ -1,16 +1,22 @@
 import pandas as pd
 import os
-import dwmaps
+import datawrappergraphics
 import geopandas
 import glob
 import re
 
 # Live, in use chart id is PsIWk. Test chart is ioEie.
-EASTERN_UKRAINE_CHART_ID = "PsIWk"
+EASTERN_UKRAINE_CHART_ID = "ioEie"
 
 # Bring in and process shapefile data for Russian advances.
 
+path = os.path.join("./assets/ukraineadvance", "*.zip")
+
+print(path)
+
 all_files = glob.glob(os.path.join("./assets/ukraineadvance", "*.zip"))
+
+print(all_files)
 
 li = []
 
@@ -126,10 +132,11 @@ eastern_cities = ["Kyiv", "Kharkiv", "Izyum", "Mariupol", "Severodonetsk", "Myko
 
 # Bring together points and shapes for import into Datawrapper map.
 data = pd.concat([areas, points[points["title"].isin(eastern_cities)]])
+data["visible"] = True
 
 print(data)
 
-eastern_ukraine = (dwmaps.Map(chart_id=EASTERN_UKRAINE_CHART_ID)
+eastern_ukraine = (datawrappergraphics.Map(chart_id=EASTERN_UKRAINE_CHART_ID)
                     .data(data)
                     .head(f"Russia launches offensive in Eastern Ukraine")
                     .deck("Tap or hover over a point to read more about fighting in that area.")
