@@ -1,1 +1,1 @@
-https://github.com/dexmcmillan/datawrappergraphics/blob/main/dist/datawrappergraphics-0.2.29-py3-none-any.whl?raw=true
+https://github.com/dexmcmillan/datawrappergraphics/releases/download/v0.2.35/datawrappergraphics-0.2.35-py3-none-any.whl

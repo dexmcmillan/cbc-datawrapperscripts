@@ -1,7 +1,7 @@
 import requests
 import geopandas
 import json
-from datawrappergraphics.Map import Map
+import datawrappergraphics
 
 # Test chart: "HqkeQ"
 # Live chart: "L45df"
@@ -37,13 +37,10 @@ print(data)
 
 percent_under_control = round(len(data[data['FIRE_STATUS'] == 'Under Control'])/len(data)*100, 0)
 
-head = f"There are <b>{len(data)} wildfires</b> burning across Alberta"
-deck = f"As of today, {percent_under_control}% are listed as under control."
-
-chart = (Map(chart_id=CHART_ID)
+chart = (datawrappergraphics.Map(chart_id=CHART_ID)
             .data(data)
-            .head(head)
-            .deck(deck)
+            .head(f"There are <b>{len(data)} wildfires</b> burning across Alberta")
+            .deck(f"As of today, {percent_under_control}% are listed as under control.")
             .footer(source="Government of Alberta")
             .publish()
             )

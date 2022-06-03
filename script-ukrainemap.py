@@ -26,15 +26,11 @@ data["anchor"] = data["anchor"].str.lower()
 data["tooltip"] = data["tooltip"].str.strip()
 data["tooltip"] = '<b>' + data["title"] + '</b><br>' + data["tooltip"] + ' <i>(Source: ' + data["source"].fillna("").str.strip().str.replace("\"", "'") + ')</i>'
 data["markerColor"] = "#c42127"
-data["type"] = "point"
 data["icon"] = 'circle-sm'
 data["scale"] = 1.2
 data["longitude"] = data["coordinates"].apply(lambda x: x.split(", ")[0].replace("[", ""))
 data["latitude"] = data["coordinates"].apply(lambda x: x.split(", ")[1].replace("]", ""))
 data = data.drop(columns=["coordinates"])
-
-print(data)
-data.to_clipboard()
 
 source_list = set(data["source"].to_list())
 source_list_clean = []

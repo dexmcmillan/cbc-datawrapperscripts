@@ -10,7 +10,13 @@ EASTERN_UKRAINE_CHART_ID = "ioEie"
 
 # Bring in and process shapefile data for Russian advances.
 
+path = os.path.join("./assets/ukraineadvance", "*.zip")
+
+print(path)
+
 all_files = glob.glob(os.path.join("./assets/ukraineadvance", "*.zip"))
+
+print(all_files)
 
 li = []
 
