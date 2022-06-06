@@ -4,7 +4,7 @@ import datawrappergraphics
 ## The ID of the Ukraine map Datawrapper.
 # LIVE CHART ID: wQIM1
 # TEST CHART ID: sM21M
-UKRAINE_CHART_ID = "sM21M"
+UKRAINE_CHART_ID = "wQIM1"
 
 ## Import sheet data.
 raw = (pd
