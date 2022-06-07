@@ -111,4 +111,4 @@ series.loc[series["Forecast"] == 0, "Predicted Direction"] = "No change"
 
 print(series)
 
-chart = datawrappergraphics.Chart(chart_id=CHART_ID, data=series).publish()
+chart = datawrappergraphics.Chart(chart_id=CHART_ID).data(data=series).publish()

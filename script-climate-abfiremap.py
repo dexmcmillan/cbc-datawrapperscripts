@@ -36,7 +36,7 @@ data = data.sort_values("scale")
 percent_under_control = round(len(data[data['FIRE_STATUS'] == 'Under Control'])/len(data)*100, 0)
 
 chart = (datawrappergraphics.Map(chart_id=CHART_ID)
-            .data(data, "./assets/shapes/shapes-abfiremap.json")
+            .data(data, "assets\shapes\shapes-abfiremap.json")
             .head(f"There are <b>{len(data)} wildfires</b> burning across Alberta")
             .deck(f"As of today, {percent_under_control}% are listed as under control.")
             .footer(source="Government of Alberta")

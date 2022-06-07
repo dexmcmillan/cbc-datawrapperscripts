@@ -2,4 +2,4 @@ pandas
 requests
 geopandas
 datawrapper
-https://github.com/dexmcmillan/datawrappergraphics/blob/main/dist/datawrappergraphics-0.3.3-py3-none-any.whl?raw=true
+https://github.com/dexmcmillan/datawrappergraphics/blob/main/dist/datawrappergraphics-0.3.9-py3-none-any.whl?raw=true

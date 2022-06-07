@@ -13,11 +13,7 @@ EASTERN_UKRAINE_CHART_ID = "ioEie"
 
 path = os.path.join("./assets/ukraineadvance", "*.zip")
 
-print(path)
-
 all_files = glob.glob(os.path.join("./assets/ukraineadvance", "*.zip"))
-
-print(all_files)
 
 li = []
 
@@ -30,8 +26,6 @@ for filename in all_files:
 
 # Concatenate all shape dataframes together.
 areas = pd.concat(li, axis=0, ignore_index=True)
-
-
 
 # Filter out any files we don't want included.
 areas = areas.loc[~areas["layer"].isin(["ClaimedRussianTerritoryinUkraine", "ClaimedUkrainianCounteroffensives"]),:]
