@@ -7,17 +7,6 @@ WORLD_CHART_ID = "bGaOM"
 CANADA_CHART_ID = "qeH8o"
 FIB_CHART_ID = "Em8sO"
 
-def fibonacci_disc(numpts: int):
-    
-    ga = np.pi * (3 - np.sqrt(5)) # golden angle
-    theta = np.arange(numpts) * ga
-
-    radius = np.sqrt(np.arange(numpts) / float(numpts))
-    x = radius * np.cos(theta)
-    y = radius * np.sin(theta)
-
-    return (x, y)
-
 raw_cases = pd.read_csv("https://raw.githubusercontent.com/globaldothealth/monkeypox/main/latest.csv", encoding="utf-8")
 
 data = raw_cases[raw_cases["Status"].isin(["confirmed", "suspected"])].sample(frac=1)

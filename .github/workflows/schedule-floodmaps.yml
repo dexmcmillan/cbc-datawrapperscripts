@@ -32,13 +32,13 @@ jobs:
         env: 
             DW_AUTH_TOKEN: ${{ secrets.DW_AUTH_TOKEN }}
         run: |
-          python3 script-bcfiremap.py
+          python3 script-climate-bcfiremap.py
 
       - name: Update Alta. fire map
         env: 
             DW_AUTH_TOKEN: ${{ secrets.DW_AUTH_TOKEN }}
         run: |
-          python3 script-abfiremap.py
+          python3 script-climate-abfiremap.py
 
       # - name: Update Man. flood map
       #   env: 

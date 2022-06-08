@@ -24,4 +24,4 @@ jobs:
       - name: Run script
         env: 
             DW_AUTH_TOKEN: ${{ secrets.DW_AUTH_TOKEN }}
-        run: python3 script-gasprices.py
+        run: python3 script-other-gasprices.py
