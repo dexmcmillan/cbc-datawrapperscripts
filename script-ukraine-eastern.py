@@ -7,7 +7,7 @@ import re
 
 # Live chart id: PsIWk
 # Test chart id: ioEie
-EASTERN_UKRAINE_CHART_ID = "ioEie"
+EASTERN_UKRAINE_CHART_ID = "PsIWk"
 
 # Bring in and process shapefile data for Russian advances.
 
@@ -70,12 +70,13 @@ raw = (pd
 ## Rename columns from the spreadsheet.
 raw.columns = ["title", "tooltip", "source", "hide_title", "visible", "coordinates", "anchor", "icon"]
 
+print(raw)
+
 ## Clean data.
 points = (raw
         .dropna(how="all")
         .set_index("title")
         .reset_index()
-        .loc[raw["visible"] == True]
         )
 
 # Set anchor based on what's specified in spreadsheet.
@@ -83,7 +84,7 @@ points["anchor"] = points["anchor"].str.lower()
 
 # Build the tooltip for display.
 points["tooltip"] = points["tooltip"].str.strip()
-points["tooltip"] = '<b>' + points["title"] + '</b><br>' + points["tooltip"] + ' <i>(Source: ' + points["source"].fillna("").str.strip().str.replace("\"", "'") + ')</i>'
+points.loc[points["tooltip"] != "", "tooltip"] = '<b>' + points["title"] + '</b><br>' + points["tooltip"] + ' <i>(Source: ' + points["source"].fillna("").str.strip().str.replace("\"", "'") + ')</i>'
 
 # Define default marker colour for these points.
 points["markerColor"] = "#29414F"
@@ -104,6 +105,9 @@ points["latitude"] = points["coordinates"].apply(lambda x: x.split(", ")[1].repl
 # Specify different marker type for capital city.
 points.loc[points["title"] == "Kyiv", "icon"] = "star-2"
 
+# Tweak some label locations for this map only.
+points.loc[points["title"] == "Lyman", "anchor"] = "top-center"
+
 # Prepare source string from source column.
 points["source"] = points["source"].fillna("")
 
@@ -123,8 +127,8 @@ source_list_clean = set(source_list_clean)
 source_string = ", ".join(source_list_clean) + ", " + "Institute for the Study of War and AEI's Critical Threats Project"
 
 # We only want these cities to show up on the Eastern Ukraine map.
-eastern_cities = ["Kyiv", "Kharkiv", "Izyum", "Mariupol", "Severodonetsk", "Mykolaiv", "Kherson", "Odesa", "Lyman"]
-
+eastern_cities = ["Kyiv", "Kharkiv", "Izyum", "Mariupol", "Severodonetsk", "Mykolaiv", "Kherson", "Odesa", "Lyman", "Bakhmut"]
+print(points)
 # Bring together points and shapes for import into Datawrapper map.
 data = pd.concat([areas, points[points["title"].isin(eastern_cities)]])
 data["visible"] = True

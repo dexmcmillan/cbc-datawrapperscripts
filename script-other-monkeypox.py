@@ -34,31 +34,36 @@ all_countries = all_countries.drop("World").sort_values(latest_date, ascending=F
 
 all_countries["current_rank"] = range(1, len(all_countries)+1)
 
-canada_rank = all_countries[["current_rank"]].at["Canada", "current_rank"]
+canada_cases = all_countries.at["Canada", str(latest_date)]
+us_cases = all_countries.at["United States", str(latest_date)]
 
-match canada_rank:
-    case 1:
-        suffix = "st"
-    case 2:
-        suffix = "nd"
-    case 3:
-        suffix = "rd"
-    case _:
-        suffix = "th"
+# def get_rank_suffix(rank):
+#     match rank:
+#         case 1:
+#             suffix = "st"
+#         case 2:
+#             suffix = "nd"
+#         case 3:
+#             suffix = "rd"
+#         case _:
+#             suffix = "th"
+        
+#     return rank
         
 world_chart = (datawrappergraphics.Chart(chart_id=WORLD_CHART_ID)
     .data(all_countries)
     .head(f"Monkeypox around the world")
-    .deck(f"<span style='color:#C42127;font-weight:500'>Canada</span> is currently ranked <b>{canada_rank}{suffix}</b> worldwide in terms of daily cases.")
+    .deck(f"<span style='color:#C42127;font-weight:500'>Canada</span> has had at least <b>{int(canada_cases)}</b> cases so far, and the <span style='color:#1F78B4;font-weight:500'>United States</span> has had at least <b>{int(us_cases)}</b> cases.")
+    .footer(timestamp=True, byline="Dexter McMillan", source="Our World in Data")
     .publish()
     )
 
 canada = raw.loc[raw["location"] == "Canada", ["date", "total_all_by_entry"]]
-logging.info(canada)
 
 canada_chart = (datawrappergraphics.Chart(chart_id=CANADA_CHART_ID)
     .data(canada)
     .head(f"Confirmed and suspected monkeypox cases in <span style='color:#C42127'>Canada</span>")
-    .deck(f"Canada is currently ranked <b>{canada_rank}{suffix}</b> in terms of daily cases.")
+    .deck(f"Canada has had <b>{canada_cases}</b>total cases so far.")
+    .footer(timestamp=True, byline="Dexter McMillan", source="Our World in Data")
     .publish()
     )

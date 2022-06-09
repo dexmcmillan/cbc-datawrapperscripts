@@ -43,5 +43,6 @@ most_cases = raw.sort_values("Confirmed cases", ascending=False).head(1).reset_i
 (datawrappergraphics.Chart(chart_id="aMiZb")
  .data(df2)
  .deck(f"Canada has reported <b>{len(df2)} confirmed cases</b>, with the majority of cases (<b>{round(len(df2[df2.index == most_cases])/len(df2)*100, 1)}%</b>) in <b>{most_cases}</b>.<br><br>Hover over or tap each dot to see confirmed cases in that province or territory.")
+ .footer(timestamp=True, byline="Dexter McMillan", source="Our World in Data")
  .publish()
  )
