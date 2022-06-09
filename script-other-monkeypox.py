@@ -63,7 +63,7 @@ canada = raw.loc[raw["location"] == "Canada", ["date", "total_all_by_entry"]]
 canada_chart = (datawrappergraphics.Chart(chart_id=CANADA_CHART_ID)
     .data(canada)
     .head(f"Confirmed and suspected monkeypox cases in <span style='color:#C42127'>Canada</span>")
-    .deck(f"Canada has had <b>{canada_cases}</b>total cases so far.")
+    .deck(f"Canada has had <b>{int(canada_cases)}</b> total cases so far.")
     .footer(timestamp=True, byline="Dexter McMillan", source="Our World in Data")
     .publish()
     )
