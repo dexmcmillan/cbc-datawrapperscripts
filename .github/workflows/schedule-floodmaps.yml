@@ -1,10 +1,10 @@
-name: Update fire and flood maps
+name: Update Canada wildfire map
 on:
   schedule:
     - cron: 0 0/4 * * *
 
 jobs:
-  update_charts:
+  update_maps:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -22,27 +22,8 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      # - name: Update BC flood warning chart
-      #   env: 
-      #       DW_AUTH_TOKEN: ${{ secrets.DW_AUTH_TOKEN }}
-      #   run: |
-      #     python3 script-bcfloodmap.py
-
-      - name: Update BC fire map
+      - name: Update Canada fire map
         env: 
             DW_AUTH_TOKEN: ${{ secrets.DW_AUTH_TOKEN }}
         run: |
-          python3 script-climate-bcfiremap.py
-
-      - name: Update Alta. fire map
-        env: 
-            DW_AUTH_TOKEN: ${{ secrets.DW_AUTH_TOKEN }}
-        run: |
-          python3 script-climate-abfiremap.py
-
-      # - name: Update Man. flood map
-      #   env: 
-      #       DW_AUTH_TOKEN: ${{ secrets.DW_AUTH_TOKEN }}
-      #   run: |
-      #     python3 script-manitobafloodmap.py
-      
+          python3 script-climate-fireperimeters
