@@ -26,4 +26,6 @@ jobs:
         env: 
             DW_AUTH_TOKEN: ${{ secrets.DW_AUTH_TOKEN }}
         run: |
-          python3 script-climate-fireperimeters
+          python3 script-climate-canadafiremap.py
+
+
