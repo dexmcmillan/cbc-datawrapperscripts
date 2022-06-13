@@ -14,7 +14,7 @@ MAP_ID = "NyqLI"
 # Make HTTP request for the data and put into a geopandas dataframe.
 raw = pd.read_csv("https://cwfis.cfs.nrcan.gc.ca/downloads/activefires/activefires.csv")
 
-data = raw.loc[raw["agency"] != "ak", :]
+data = raw.loc[~raw["agency"].isin(["ak", "conus", "pc"]), :]
 data.columns = data.columns.str.strip()
 
 data["stage_of_control"] = data["stage_of_control"].str.strip().replace({
@@ -33,7 +33,7 @@ data["province/territory"] = data["agency"].replace({
     "yt": "Yukon",
     "nt": "Northwest Territories",
     "qc": "Quebec",
-    "mn": "Manitoba",
+    "mb": "Manitoba",
     "nl": "Newfoundland and Labrador",
     "pe": "Prince Edward Island"
 })
@@ -46,9 +46,10 @@ data["startdate"] = pd.to_datetime(data["startdate"])
 
 data["duration"] = dt.datetime.today() - data["startdate"]
 
-data = data.sort_values("duration", ascending=False)
+data = data.sort_values("duration", ascending=False).reset_index()
 
 data["duration"] = data["duration"].apply(lambda x: strfdelta(x, "{days} days and {hours} hours"))
+
 
 longest_duration = data.at[0, "duration"]
 
@@ -61,6 +62,6 @@ print(data)
 (datawrappergraphics.Chart(MAP_ID)
  .data(data)
  .head(f"There are <b>{num_fires:,} active wildfires</b> burning in Canada right now, covering {total_area:,} hectares of land.")
- .deck(f"The longest has been burning for <b>{longest_duration}</b>. <b>{percent_oc}%</b> are classifed as out of control.<br><br>Size of the circles indicate relative size of the fire. Zoom in to see fires that are closely grouped.")
+ .deck(f"The longest has been burning for <b>{longest_duration}</b>, and <b>{percent_oc}%</b> are classifed as out of control.<br><br>Size of the circles indicate relative size of the fire. Zoom in to see fires that are closely grouped.")
  .publish()
  )
