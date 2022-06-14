@@ -1,6 +1,5 @@
 import pandas as pd
 import datawrappergraphics
-import numpy as np
 import logging
 
 WORLD_CHART_ID = "bGaOM"
@@ -37,20 +36,17 @@ all_countries["current_rank"] = range(1, len(all_countries)+1)
 canada_cases = all_countries.at["Canada", str(latest_date)]
 us_cases = all_countries.at["United States", str(latest_date)]
 
-# def get_rank_suffix(rank):
-#     match rank:
-#         case 1:
-#             suffix = "st"
-#         case 2:
-#             suffix = "nd"
-#         case 3:
-#             suffix = "rd"
-#         case _:
-#             suffix = "th"
+
+
+world_chart = datawrappergraphics.Chart(chart_id=WORLD_CHART_ID)
+
+meta_obj = {k: "#cccccc" for k in all_countries.index.to_list()}
+meta_obj["Canada"] = "#C42127"
+meta_obj["United States"] = "#1F78B4"
+
+world_chart.metadata["metadata"]["visualize"]["custom-colors"] = meta_obj
         
-#     return rank
-        
-world_chart = (datawrappergraphics.Chart(chart_id=WORLD_CHART_ID)
+(world_chart
     .data(all_countries)
     .head(f"Monkeypox around the world")
     .deck(f"<span style='color:#C42127;font-weight:500'>Canada</span> has had at least <b>{int(canada_cases)}</b> cases so far, and the <span style='color:#1F78B4;font-weight:500'>United States</span> has had at least <b>{int(us_cases)}</b> cases.")
