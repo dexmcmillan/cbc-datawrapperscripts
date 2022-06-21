@@ -14,7 +14,7 @@ dw = Datawrapper(access_token=DW_AUTH_TOKEN)
 
 # Test: gloZT
 # Live: 7skMM
-CHART_ID = "gloZT"
+CHART_ID = "7skMM"
 
 today = dt.datetime.today()
 today = today.strftime("%Y-%m-%d")

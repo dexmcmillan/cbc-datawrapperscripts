@@ -127,7 +127,7 @@ source_list_clean = set(source_list_clean)
 source_string = ", ".join(source_list_clean) + ", " + "Institute for the Study of War and AEI's Critical Threats Project"
 
 # We only want these cities to show up on the Eastern Ukraine map.
-eastern_cities = ["Kyiv", "Kharkiv", "Izyum", "Mariupol", "Severodonetsk", "Mykolaiv", "Kherson", "Odesa", "Lyman", "Bakhmut"]
+eastern_cities = ["Kyiv", "Kharkiv", "Mariupol", "Severodonetsk", "Mykolaiv", "Kherson", "Odesa", "Bakhmut"]
 print(points)
 # Bring together points and shapes for import into Datawrapper map.
 data = pd.concat([areas, points[points["title"].isin(eastern_cities)]])
