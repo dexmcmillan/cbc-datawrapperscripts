@@ -6,22 +6,22 @@ WORLD_CHART_ID = "bGaOM"
 CANADA_CHART_ID = "qeH8o"
 FIB_CHART_ID = "Em8sO"
 
-raw_cases = pd.read_csv("https://raw.githubusercontent.com/globaldothealth/monkeypox/main/latest.csv", encoding="utf-8")
+# raw_cases = pd.read_csv("https://raw.githubusercontent.com/globaldothealth/monkeypox/main/latest.csv", encoding="utf-8")
 
-data = raw_cases[raw_cases["Status"].isin(["confirmed", "suspected"])].sample(frac=1)
+# data = raw_cases[raw_cases["Status"].isin(["confirmed", "suspected"])].sample(frac=1)
 
-for col, values in data.iteritems():
-    data[col] = data[col].astype(str).str.replace("ʻ", "")
+# for col, values in data.iteritems():
+#     data[col] = data[col].astype(str).str.replace("ʻ", "")
     
-canada_percent = str(round((len(data[data["Country"] == "Canada"]) / len(data) *100), 1))
+# canada_percent = str(round((len(data[data["Country"] == "Canada"]) / len(data) *100), 1))
 
 
-fib_chart = (datawrappergraphics.FibonacciChart(chart_id=FIB_CHART_ID)
-             .data(data)
-             .head(f"Confirmed and suspected monkeypox cases around the world")
-             .deck(f"<b>{canada_percent}%</b> of worldwide cases have been in Canada.")
-             .publish()
-             )
+# fib_chart = (datawrappergraphics.FibonacciChart(chart_id=FIB_CHART_ID)
+#              .data(data)
+#              .head(f"Confirmed and suspected monkeypox cases around the world")
+#              .deck(f"<b>{canada_percent}%</b> of worldwide cases have been in Canada.")
+#              .publish()
+#              )
 
 raw = pd.read_csv("https://raw.githubusercontent.com/owid/notebooks/main/EdouardMathieu/monkeypox/owid-monkeypox-data.csv")
 
