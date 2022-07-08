@@ -61,7 +61,7 @@ print(data)
 
 (datawrappergraphics.Chart(MAP_ID)
  .data(data)
- .head(f"There are <b>{num_fires:,} active wildfires</b> burning in Canada right now, covering {total_area:,} hectares of land.")
+ .head(f"There are at least <b>{num_fires:,} active wildfires</b> burning in Canada right now, covering {total_area:,} hectares of land.")
  .deck(f"The longest has been burning for <b>{longest_duration}</b>, and <b>{percent_oc}%</b> are classifed as out of control.<br><br>Size of the circles indicate relative size of the fire. Zoom in to see fires that are closely grouped.")
  .publish()
  )
