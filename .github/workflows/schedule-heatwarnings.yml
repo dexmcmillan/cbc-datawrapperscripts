@@ -1,7 +1,7 @@
 name: Update Canada heat warnings maps
 on:
   schedule:
-    - cron: 0/15 * * * *
+    - cron: 0 0/12 * * *
 
 jobs:
   update_maps:
