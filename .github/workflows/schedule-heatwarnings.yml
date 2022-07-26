@@ -1,0 +1,31 @@
+name: Update Canada heat warnings maps
+on:
+  schedule:
+    - cron: 0/15 * * * *
+
+jobs:
+  update_maps:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Set up Python 3.10.2
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.10.2"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Update Canada heat warnings map
+        env: 
+            DW_AUTH_TOKEN: ${{ secrets.DW_AUTH_TOKEN }}
+        run: |
+          python3 script-climate-heatwarnings.py
+
+
