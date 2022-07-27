@@ -25,9 +25,9 @@ FIB_CHART_ID = "Em8sO"
 
 raw = pd.read_csv("https://raw.githubusercontent.com/owid/notebooks/main/EdouardMathieu/monkeypox/owid-monkeypox-data.csv")
 
-all_countries = raw.pivot(index="location", columns="date", values="total_confirmed_by_confirmation").dropna(axis=0)
+all_countries = raw.pivot(index="location", columns="date", values="total_confirmed_by_confirmation").dropna(axis=0, how="all")
 
-latest_date = all_countries.columns[-1]
+latest_date = all_countries.columns[-2]
 
 all_countries = all_countries.drop("World").sort_values(latest_date, ascending=False)
 
