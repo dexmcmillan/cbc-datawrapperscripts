@@ -19,8 +19,8 @@ data["stroke"] = False
 # markers = [x for n in (markers1, markers2) for x in n]
 
 
-with open('./assets/shapes/shapes-bcfiremap.json', 'w', encoding='utf-8') as f:
-    json.dump(markers, f)
+# with open('./assets/shapes/shapes-bcfiremap.json', 'w', encoding='utf-8') as f:
+#     json.dump(markers, f)
 
 map = (datawrappergraphics.Map(chart_id=CHART_ID)
             .data(data, append="./assets/shapes/shapes-bcfiremap.json")
