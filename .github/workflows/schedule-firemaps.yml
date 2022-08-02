@@ -28,4 +28,10 @@ jobs:
         run: |
           python3 script-climate-canadafiremap.py
 
+      - name: Update Keremeos fire map
+        env: 
+            DW_AUTH_TOKEN: ${{ secrets.DW_AUTH_TOKEN }}
+        run: |
+          python3 script-climate-bcfiremap.py
+
 

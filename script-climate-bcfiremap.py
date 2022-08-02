@@ -13,13 +13,6 @@ data = geopandas.read_file(json.dumps(r.json()))
 
 data["stroke"] = False
 
-# markers = datawrappergraphics.Map(chart_id=CHART_ID).get_markers()[0:2]
-
-# with open('./assets/shapes/shapes-bcfiremap.json', 'w', encoding='utf-8') as f:
-#     json.dump(markers, f)
-
-
-
 map = (datawrappergraphics.Map(chart_id=CHART_ID)
             .data(data, append="./assets/shapes/shapes-bcfiremap.json")
             .footer(source="B.C. Wildfire Centre")
