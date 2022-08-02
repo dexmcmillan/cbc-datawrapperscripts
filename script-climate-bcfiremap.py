@@ -27,14 +27,14 @@ data["fill"] = False
 
 # data = data.append(evac)
 
-markers1 = datawrappergraphics.Map(chart_id=CHART_ID).get_markers()[0:2]
-markers2 = datawrappergraphics.Map(chart_id=CHART_ID).get_markers()[-5:]
+# markers1 = datawrappergraphics.Map(chart_id=CHART_ID).get_markers()[0:2]
+# markers2 = datawrappergraphics.Map(chart_id=CHART_ID).get_markers()[-5:]
 
-markers = [x for n in (markers1, markers2) for x in n]
+# markers = [x for n in (markers1, markers2) for x in n]
 
 
-with open('./assets/shapes/shapes-bcfiremap.json', 'w', encoding='utf-8') as f:
-    json.dump(markers, f)
+# with open('./assets/shapes/shapes-bcfiremap.json', 'w', encoding='utf-8') as f:
+#     json.dump(markers, f)
 
 # data["fill"] = data["fill"].fillna("#C42127")
 
