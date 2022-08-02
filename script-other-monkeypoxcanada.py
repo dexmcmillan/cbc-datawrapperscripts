@@ -10,26 +10,26 @@ canada.loc[canada["City"].isna(), "City"] = canada["City2"]
 canada = canada.drop("City2", axis=1)
 
 cities = canada.loc[canada["Status"] == "confirmed", ["ID", "City"]].groupby("City").count().sort_values("ID", ascending=False)
-
-print(cities)
+cities = cities.head(6)
 
 (datawrappergraphics.Chart("vUriB")
  .data(cities)
- .head(f"Locations of confirmed monkeypox cases in Canada")
+ .head(f"Monkeypox cases in Canada")
+ .deck(f"Locations with the most confirmed cases.")
  .footer(source="Global.health", timestamp=True)
  .publish()
  )
 
 countries = pd.read_csv("https://raw.githubusercontent.com/globaldothealth/monkeypox/main/timeseries-country-confirmed.csv")
 
-canada = countries[countries["Country"] == "Canada"]
-canada = canada.drop(["Country", "Cumulative_cases"], axis=1)
-canada["7-day average"] = canada["Cases"].rolling(7).mean()
+canada_time = countries[countries["Country"] == "Canada"]
+canada_time = canada_time.drop(["Country", "Cumulative_cases"], axis=1)
+canada_time["7-day average"] = canada_time["Cases"].rolling(7).mean()
 
-canada = canada.dropna()
+canada_time = canada_time.dropna()
 
 (datawrappergraphics.Chart("R18TO")
- .data(canada)
+ .data(canada_time)
  .head(f"Monkeypox cases in Canada")
  .deck(f"Rolling 7-day average of confirmed cases since May 2022.")
  .footer(source="Global.health", timestamp=True)
