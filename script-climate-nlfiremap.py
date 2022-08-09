@@ -27,7 +27,7 @@ data["title"] = data["UID"]
 #     json.dump(markers, f)
 
 
-data = data[data["UID"].isin([8709641, 8709640])]
+# data = data[data["UID"].isin([8709641, 8709640])]
 
 
 highway = geopandas.read_file("./assets/shapes/highway.geojson")

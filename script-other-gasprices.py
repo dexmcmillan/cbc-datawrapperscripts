@@ -1,6 +1,5 @@
 import pandas as pd
 import datetime as dt
-from datawrapper import Datawrapper
 import os
 import re
 import datawrappergraphics
@@ -9,8 +8,6 @@ try:
     with open('auth.txt', 'r') as f:
         DW_AUTH_TOKEN = f.read().strip()    
 except: DW_AUTH_TOKEN = os.environ['DW_AUTH_TOKEN']
-
-dw = Datawrapper(access_token=DW_AUTH_TOKEN)
 
 # Test: gloZT
 # Live: 7skMM

@@ -9,7 +9,7 @@ raw = pd.read_csv('https://www150.statcan.gc.ca/t1/tbl1/en/dtl!downloadDbLoading
 
 filtered = raw[(raw["Products and product groups"] == "All-items")
                & (raw["GEO"] == "Canada")
-               & (raw["REF_DATE"] >= "2000-01")
+               & (raw["REF_DATE"] >= "1970-01")
                ]
 
 filtered = (filtered
@@ -23,6 +23,6 @@ filtered = filtered.dropna(subset=["change"])
 
 filtered["REF_DATE"] = pd.to_datetime(filtered["REF_DATE"])
 
-filtered = filtered.loc[:, ["REF_DATE", "change"]].tail(24).set_index("REF_DATE")
+filtered = filtered.loc[:, ["REF_DATE", "change"]].set_index("REF_DATE")
 
 chart = datawrappergraphics.Chart(chart_id=CHART_ID).data(filtered).publish()
