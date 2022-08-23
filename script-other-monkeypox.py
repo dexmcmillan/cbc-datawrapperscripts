@@ -23,7 +23,7 @@ FIB_CHART_ID = "Em8sO"
 #              .publish()
 #              )
 
-raw = pd.read_csv("https://raw.githubusercontent.com/owid/notebooks/main/EdouardMathieu/monkeypox/owid-monkeypox-data.csv")
+raw = pd.read_csv("https://raw.githubusercontent.com/owid/monkeypox/main/owid-monkeypox-data.csv")
 
 all_countries = raw.pivot(index="location", columns="date", values="total_cases").dropna(axis=0, how="all")
 
