@@ -34,5 +34,6 @@ jobs:
         run: |
           python3 script-climate-bcfiremap.py
           python3 script-climate-nlfiremap.py
+          python3 script-climate-caliwildfires.py
 
 

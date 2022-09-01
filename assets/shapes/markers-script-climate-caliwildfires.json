@@ -1,0 +1,169 @@
+[
+    {
+        "id": "m7",
+        "wikidata": null,
+        "type": "point",
+        "title": "Castaic Lake",
+        "icon": {
+            "id": "none",
+            "path": "M0,0"
+        },
+        "scale": 1,
+        "textPosition": null,
+        "markerColor": "#333333",
+        "markerSymbol": "",
+        "markerTextColor": "#333333",
+        "anchor": "middle-right",
+        "offsetY": -2,
+        "offsetX": 33,
+        "labelStyle": "plain",
+        "text": {
+            "bold": false,
+            "italic": false,
+            "uppercase": false,
+            "space": false,
+            "color": "#333333",
+            "fontSize": 14,
+            "halo": "#f2f3f0"
+        },
+        "class": "",
+        "rotate": 0,
+        "visible": true,
+        "locked": false,
+        "preset": "-",
+        "visibility": {
+            "mobile": true,
+            "desktop": true
+        },
+        "tooltip": {
+            "enabled": false,
+            "text": ""
+        },
+        "connectorLine": {
+            "enabled": true,
+            "arrowHead": false,
+            "type": "straight",
+            "targetPadding": 3,
+            "stroke": 1,
+            "lineLength": 40
+        },
+        "coordinates": [
+            -118.58875278450995,
+            34.53518913599744
+        ]
+    },
+    {
+        "id": "m6",
+        "wikidata": null,
+        "type": "point",
+        "title": "Interstate 5",
+        "icon": {
+            "id": "none",
+            "path": "M0,0"
+        },
+        "scale": 1,
+        "textPosition": null,
+        "markerColor": "#333333",
+        "markerSymbol": "",
+        "markerTextColor": "#333333",
+        "anchor": "middle-left",
+        "offsetY": 1,
+        "offsetX": -33,
+        "labelStyle": "plain",
+        "text": {
+            "bold": false,
+            "italic": false,
+            "uppercase": false,
+            "space": false,
+            "color": "#333333",
+            "fontSize": 14,
+            "halo": "#f2f3f0"
+        },
+        "class": "",
+        "rotate": 0,
+        "visible": true,
+        "locked": false,
+        "preset": "-",
+        "visibility": {
+            "mobile": true,
+            "desktop": true
+        },
+        "tooltip": {
+            "enabled": false,
+            "text": ""
+        },
+        "connectorLine": {
+            "enabled": true,
+            "arrowHead": false,
+            "type": "straight",
+            "targetPadding": 3,
+            "stroke": 1,
+            "lineLength": 40
+        },
+        "coordinates": [
+            -118.70114945506498,
+            34.57611356338019
+        ]
+    },
+    {
+        "id": "m1",
+        "wikidata": "Q3242084",
+        "type": "point",
+        "title": "Castaic, Calif.",
+        "icon": {
+            "id": "square",
+            "path": "M0 850h1000v-1000h-1000z",
+            "horiz-adv-x": 1000,
+            "scale": 1.1,
+            "height": 700,
+            "width": 1000
+        },
+        "scale": 1,
+        "textPosition": null,
+        "markerColor": "#333333",
+        "markerSymbol": "",
+        "markerTextColor": "#333333",
+        "anchor": "middle-left",
+        "offsetY": 0,
+        "offsetX": 203,
+        "labelStyle": "plain",
+        "text": {
+            "bold": true,
+            "italic": false,
+            "uppercase": false,
+            "space": false,
+            "color": "#333333",
+            "fontSize": 16,
+            "halo": "#f2f3f0"
+        },
+        "class": "",
+        "rotate": 0,
+        "visible": true,
+        "locked": false,
+        "preset": "-",
+        "visibility": {
+            "mobile": true,
+            "desktop": true
+        },
+        "tooltip": {
+            "enabled": false,
+            "text": ""
+        },
+        "connectorLine": {
+            "enabled": true,
+            "arrowHead": false,
+            "type": "straight",
+            "targetPadding": 3,
+            "stroke": 1,
+            "lineLength": 80.55000305175781
+        },
+        "coordinates": [
+            -118.6228656,
+            34.4888822
+        ],
+        "orgLatLng": [
+            -118.6228656,
+            34.4888822
+        ]
+    }
+]
